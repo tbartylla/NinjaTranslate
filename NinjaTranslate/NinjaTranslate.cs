@@ -12,7 +12,7 @@ using System.Threading;
 
 namespace NinjaTranslate
 {
-    class Program {
+    class NinjaTranslate {
         static DictionaryReader dr = new DictionaryReader();
 
         [STAThread]
@@ -42,8 +42,11 @@ namespace NinjaTranslate
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public string getSelectedTextFromClipboard() {
-           return getTranslation(GetActiveWindow());    
+        public string getTranslation() {
+            string textFromClipboard = GetActiveWindow();
+            if (textFromClipboard == null)
+                return null;
+            return DictionaryReader.translate(textFromClipboard.ToLowerInvariant().Trim());  
         }
 
         [DllImport("USER32.DLL")]
@@ -55,34 +58,29 @@ namespace NinjaTranslate
         [DllImport("user32.dll")]
         static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
+        // TODO: restore data in Clipboard.
         private string GetActiveWindow() {
             object oldClipboardDataObject = Clipboard.GetData(DataFormats.UnicodeText);
             const int nChars = 256;
             IntPtr handle;
             StringBuilder Buff = new StringBuilder(nChars);
             handle = GetForegroundWindow();
-            if (GetWindowText(handle, Buff, nChars) > 0)
-            {
-              string windowTitle = Buff.ToString();
-              System.Threading.Thread.Sleep(400);
-            }
+            //if (GetWindowText(handle, Buff, nChars) > 0)
+            //{
+            //  string windowTitle = Buff.ToString();
+            //  System.Threading.Thread.Sleep(400);
+            //}
+            System.Threading.Thread.Sleep(400);
             SetForegroundWindow(handle);
             SendKeys.SendWait("^(c)");
             object restorePoint = Clipboard.GetData(DataFormats.UnicodeText);
             if (restorePoint == null) {
                 if (oldClipboardDataObject == null){
-                    MessageBox.Show("Program couldn't find any processible content");
-                    return "";
+                    return null;
                 }
                 return oldClipboardDataObject.ToString();
             }          
             return restorePoint.ToString();
         }
-
-        public String getTranslation(String input) {
-            return DictionaryReader.translate(input.ToLowerInvariant().Trim());
-        }
-
-        
     }
 }
