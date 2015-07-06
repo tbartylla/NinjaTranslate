@@ -26,9 +26,9 @@ namespace NinjaTranslate {
         /// <summary>
         /// Loads a serialized tree in the background thread.
         /// </summary>
-        void Bw_DoWork(object sender, DoWorkEventArgs e) {
+        void Bw_DoWork(object sender, DoWorkEventArgs e) { 
             if (File.Exists("Patrix.Tree"))
-            LoadData("Patrix.Tree");
+                LoadData("Patrix.Tree");
         }
        
         public void readRawDictionary() {
@@ -69,7 +69,7 @@ namespace NinjaTranslate {
                     sr.Close();
                     byte[] serialization = PatrixiaTrie.PatrixiaTrieFileMapper.Serialize(tree.getRootNode());
                     SaveData("Patrix.Tree", serialization);
-                }
+                } 
             }
             sF.Close();
         }

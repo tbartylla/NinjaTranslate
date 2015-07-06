@@ -12,6 +12,8 @@ namespace NinjaTranslate {
     public partial class splashForm : Form {
         public splashForm() {
             InitializeComponent();
+            progressBar1.ForeColor = System.Drawing.ColorTranslator.FromHtml("#5487a6"); // blue
+            progressBar1.Style = ProgressBarStyle.Continuous;
         }
 
         public ProgressBar getProgressBar(){
