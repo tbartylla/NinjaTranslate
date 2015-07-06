@@ -43,7 +43,7 @@ namespace NinjaTranslate {
                     Thread.Sleep(100);
                 }
             } else {
-                using (StreamReader sr = new StreamReader("C:/Users/Toni/Desktop/25.03/eng-de.txt")) {
+                using (StreamReader sr = new StreamReader("C:/Users/Patrick/Programmierung/PatrixiaTrie/cbooombbdf-9320024555-eua986.txt")) {
                     string line = sr.ReadLine();
                     int counter = 1;
                     string[] wordArray;
@@ -99,7 +99,7 @@ namespace NinjaTranslate {
 
         private int countLines() {
             lineCount = 0;
-            using (var reader = File.OpenText(@"C:/Users/Toni/Desktop/25.03/eng-de.txt")) {
+            using (var reader = File.OpenText(@"C:/Users/Patrick/Programmierung/PatrixiaTrie/cbooombbdf-9320024555-eua986.txt")) {
                 while (reader.ReadLine() != null) {
                     lineCount++;
                 }
