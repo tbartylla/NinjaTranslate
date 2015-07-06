@@ -150,15 +150,16 @@ namespace NinjaTranslate {
 			return this.root.getSize();
 		}
 
+        //TODO fix for "he" - "hehehehe"
 		public Node processQuery(String query) {
 			Node node = this.root.goToMatchingNode(query, false);
 			if(node != null)
-			if (node.getIsQueryFinished())
-				return node;
+			    if (node.getIsQueryFinished())
+				    return node;
 			return null;
 		}
 	
-		public void printGraph(int level, Node node) {
+		public void printGraph(int level, Node node){ 
 			for (int i = 0; i < level; i++)
 				Console.Write("#");
 			Console.WriteLine(node.getSymbol() + " - ");
