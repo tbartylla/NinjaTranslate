@@ -44,7 +44,7 @@ namespace NinjaTranslate
         }
 
         void hook_KeyPressed(object sender, KeyPressedEventArgs e){
-            textBox1.Text = nt.getTranslation() + i++ + "\n";
+            textBox1.Text = nt.getTranslation(false) + i++ + "\n";
         }
 
 
@@ -98,7 +98,7 @@ namespace NinjaTranslate
         // FIXME: lousy hack, to make sure that pdf-files work 
         // still doesn't really work (from time to time) we don't find the marked text.
         private void textBox1_TextChanged(object sender, EventArgs e) {
-            notifyIcon1.BalloonTipText = nt.getTranslation() + i++ + "\n";
+            notifyIcon1.BalloonTipText = nt.getTranslation(true) + i++ + "\n";
             notifyIcon1.ShowBalloonTip(500);
         }
     }
