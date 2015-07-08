@@ -10,9 +10,6 @@ using System.Collections.Generic;
 
 namespace PatrixiaTrie {
 
-    /*
-     * 
-     * */
     /// <summary>
     /// Contains methods to serialize a tree of Node-objects to an array of bytes, and to deserialize it vice versa. 
     /// </summary>

@@ -7,7 +7,7 @@ using System.Collections;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace NinjaTranslate {
+namespace PatrixiaTrie {
     public class Node {
 
         protected List<Node> children = new List<Node>();
@@ -163,25 +163,6 @@ namespace NinjaTranslate {
 
         public Node goToMatchingNode(String query) {
             return this.goToMatchingNode(query, true);
-        }
-
-        // The method is called on serialization.
-        public void GetObjectData(SerializationInfo info, StreamingContext context) {
-            info.AddValue("children", this.children, typeof(List<Node>));
-            info.AddValue("parent", this.parent);
-            info.AddValue("symbol", this.symbol);
-            info.AddValue("translation", this.translation);
-            info.AddValue("finished", this.queryFinished);
-        }
-
-        // The special constructor is used to deserialize values.
-        public Node(SerializationInfo info, StreamingContext context) {
-            // Reset the property value using the GetValue method.
-            this.children = (List<Node>)info.GetValue("children", typeof(List<Node>));
-            this.parent = (Node)info.GetValue("parent", typeof(Node));
-            this.symbol = (String)info.GetValue("symbol", typeof(string));
-            this.translation = (List<String>)info.GetValue("translation", typeof(List<Node>));
-            this.queryFinished = (Boolean)info.GetValue("finished", typeof(Boolean));
         }
     }
 }
