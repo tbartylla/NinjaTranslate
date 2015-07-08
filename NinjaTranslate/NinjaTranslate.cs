@@ -12,7 +12,7 @@ using System.Threading;
 
 namespace NinjaTranslate
 {
-    class NinjaTranslate {
+    class NinjaTranslateMain {
         static DictionaryReader dr = new DictionaryReader();
 
         [STAThread]
