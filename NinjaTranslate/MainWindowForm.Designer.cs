@@ -92,7 +92,7 @@
             this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "NinjaTranslate";
-            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.Visible = false;
             this.notifyIcon1.Click += new System.EventHandler(this.notifyIcon1_Click);
             // 
             // MainWindow
@@ -109,6 +109,7 @@
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "NinjaTranslate Test";
+            this.WindowState = System.Windows.Forms.FormWindowState.Normal;
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -18,9 +18,8 @@ namespace NinjaTranslate
         [STAThread]
         static void Main() {
             dr.readRawDictionary();
-            Application.Run(new MainWindow());   
-        }
-
+            Application.Run(new MainWindow());
+        }   
 
         public void getSelectedText() {
             var element = AutomationElement.FocusedElement;
@@ -65,14 +64,9 @@ namespace NinjaTranslate
             IntPtr handle;
             StringBuilder Buff = new StringBuilder(nChars);
             handle = GetForegroundWindow();
-            //if (GetWindowText(handle, Buff, nChars) > 0)
-            //{
-            //  string windowTitle = Buff.ToString();
-            //  System.Threading.Thread.Sleep(400);
-            //}
-            System.Threading.Thread.Sleep(400);
             SetForegroundWindow(handle);
             SendKeys.SendWait("^(c)");
+            System.Threading.Thread.Sleep(400);
             object restorePoint = Clipboard.GetData(DataFormats.UnicodeText);
             if (restorePoint == null) {
                 if (oldClipboardDataObject == null){

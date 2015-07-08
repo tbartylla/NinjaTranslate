@@ -79,18 +79,19 @@ namespace NinjaTranslate
         }
 
         private void notifyIcon1_Click(object sender, EventArgs e) {
-            this.ShowInTaskbar = true;
-            this.notifyIcon1.Visible = false;
             this.WindowState = FormWindowState.Normal;
         }
 
         private void Form1_SizeChanged(object sender, EventArgs e) {
             if (this.WindowState == FormWindowState.Minimized) {
+                this.ShowInTaskbar = false;
+                this.notifyIcon1.Visible = true;
                 notifyIcon1.BalloonTipText = "NinjaTranslate has been minimized";
                 notifyIcon1.ShowBalloonTip(1000);
-                this.ShowInTaskbar = false;
-                this.WindowState = FormWindowState.Minimized;
-                this.notifyIcon1.Visible = true;
+            }
+            if (this.WindowState == FormWindowState.Normal) {
+                this.notifyIcon1.Visible = false;
+                this.ShowInTaskbar = true;
             }
         }
 
