@@ -112,6 +112,8 @@ namespace NinjaTranslate {
         }
         
         public static String translate(string input) {
+            if (input == null)
+                return "no processible content";
             if (tree.processQuery(input) != null) {
                 String translations = "";
                 foreach(string translation in tree.processQuery(input).getTranslations()){
