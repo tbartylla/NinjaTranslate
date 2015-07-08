@@ -23,7 +23,7 @@ namespace NinjaTranslate
         /// </summary>
         private KeyboardHook hook = new KeyboardHook();
         private KeyboardHook hookInput = new KeyboardHook();
-        NinjaTranslate nt = new NinjaTranslate();
+        NinjaTranslateMain nt = new NinjaTranslateMain();
         int i = 0;
 
         public NotifyIcon getNotifyIcon() {

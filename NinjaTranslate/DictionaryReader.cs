@@ -35,7 +35,7 @@ namespace NinjaTranslate {
             bw.WorkerReportsProgress = true;
             bw.DoWork += new DoWorkEventHandler(Bw_DoWork);
             bw.RunWorkerAsync();
-
+            
             sF.Show();
             if (File.Exists("Patrix.Tree")) {
                 while (PatrixiaTrie.PatrixiaTrieFileMapper.deserializationProgress < 100) {
@@ -43,7 +43,7 @@ namespace NinjaTranslate {
                     Thread.Sleep(100);
                 }
             } else {
-                using (StreamReader sr = new StreamReader("C:/Users/Patrick/Programmierung/PatrixiaTrie/cbooombbdf-9320024555-eua986.txt")) {
+                using (StreamReader sr = new StreamReader(Config.GetValue("path"))) {
                     string line = sr.ReadLine();
                     int counter = 1;
                     string[] wordArray;
@@ -58,6 +58,7 @@ namespace NinjaTranslate {
 
                             if (counter % (10000) == 0) {
                                 sF.getProgressBar().Value = (int)((counter * 100) / lineCount); //sets value of progressbar
+                                Console.WriteLine(counter);    
                             }
                             if (n.normalize(word) != null) {
                                 tree.insertQuery(n.normalize(word), translation);
@@ -99,7 +100,7 @@ namespace NinjaTranslate {
 
         private int countLines() {
             lineCount = 0;
-            using (var reader = File.OpenText(@"C:/Users/Patrick/Programmierung/PatrixiaTrie/cbooombbdf-9320024555-eua986.txt")) {
+            using (var reader = File.OpenText(@Config.GetValue("path"))) {
                 while (reader.ReadLine() != null) {
                     lineCount++;
                 }

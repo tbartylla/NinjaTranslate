@@ -4,7 +4,8 @@ using System.IO;
 using System.Text;
 
 namespace NinjaTranslate {
-    static class Config {
+
+    public static class Config {
         private static String filePath = "config.ini";
         private static Dictionary<String, String> confValues = new Dictionary<String, String>();
         private static bool valuesLoaded = false;
@@ -12,7 +13,7 @@ namespace NinjaTranslate {
         private static bool Load() {
             if (!File.Exists(Config.filePath))
                 return false;
-
+            
             String[] lines = File.ReadAllLines(@Config.filePath);
             foreach (String line in lines) {
                 if (line.StartsWith("//") || line.Trim().Equals(""))
@@ -29,7 +30,7 @@ namespace NinjaTranslate {
             return true;
         }
 
-        public static String GetValue(String key) {
+        public static string GetValue(String key) {
             if (!Config.valuesLoaded)
                 if (!Config.Load())
                     return "";
@@ -37,6 +38,11 @@ namespace NinjaTranslate {
             if (Config.confValues.ContainsKey(key))
                 return Config.confValues[key];
             return "";
+        }
+
+        //TODO sollte auch was machen
+        public static void SetValue(String key, String value) {
+
         }
     }
 }
