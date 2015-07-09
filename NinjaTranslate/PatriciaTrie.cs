@@ -98,6 +98,10 @@ namespace NinjaTranslate {
 					prefix = newQueryPart.Substring(0, i);
 					break;
 				}
+                //if at this point no prefix was created, we need a special case to copy all chars (previos case was for 
+                //all but the last char, since we checked for differences)
+                if ((i + 1) == upperBound) 
+                    prefix = newQueryPart.Substring(0, (i + 1));
 			}
 
 			// store prefix node
@@ -105,7 +109,7 @@ namespace NinjaTranslate {
 			prefixNode.setSymbol(prefix);
 			if (PrefixIsQuery) {
 				prefixNode.setIsFinished(true);
-				prefixNode.addTranslation(translation); // XXX sicher?
+				prefixNode.addTranslation(translation);
 			} else
 				prefixNode.setIsFinished(false);
 			prefixNode.setParent(lowestMatchingNode);
