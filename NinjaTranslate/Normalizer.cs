@@ -6,13 +6,14 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace NinjaTranslate {
+    
     class Normalizer {
         public String normalize(String input) {
-            input = removeInvalidWords(removeMultipleSpaces(removeRedundantInformation(removeBrackets(input))));
-            if (input == null || input.Length == 0)
+            String normalizedInput = removeInvalidWords(removeMultipleSpaces(removeRedundantInformation(removeBrackets(input))));
+            if (normalizedInput == null || normalizedInput.Length == 0 || (normalizedInput.Length == 1 && input.Length > 1))
                 return null;
 
-            return input;
+            return normalizedInput;
         }
 
         /// <summary>

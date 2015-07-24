@@ -10,7 +10,7 @@ using PatrixiaTrie;
 
 namespace NinjaTranslate {
 	[Serializable()]
-	class PatriciaTrie : ISerializable {
+	class PatriciaTrie {
 
 		protected Node root;
 
@@ -40,7 +40,7 @@ namespace NinjaTranslate {
 
 		public bool insertQuery(String query, String translation) {
 
-			Node lowestMatchingNode = this.root.goToMatchingNode(query);
+			Node lowestMatchingNode = this.root.goToMatchingNode(query, Node.MatchingType.MATCH_INSERT); //default nothing
 			Node childWithSamePrefix = null;
 			if (lowestMatchingNode == null) {
 				lowestMatchingNode = this.root;
@@ -157,7 +157,7 @@ namespace NinjaTranslate {
 
         //TODO fix for "he" - "hehehehe"
 		public Node processQuery(String query) {
-			Node node = this.root.goToMatchingNode(query, false);
+			Node node = this.root.goToMatchingNode(query, Node.MatchingType.MATCH_EXACT);
 			if(node != null)
 			    if (node.getIsQueryFinished())
 				    return node;
@@ -171,17 +171,5 @@ namespace NinjaTranslate {
 			foreach (Node child in node.getChildren())
 				this.printGraph(level + 1, child);
 		}
-
-		public void GetObjectData(SerializationInfo info, StreamingContext context){
-			// AddValue method specifies serialized values.
-			info.AddValue("Tree", this.root, typeof(Node));
-		}
-
-		// The special constructor is used to deserialize values.
-		public PatriciaTrie(SerializationInfo info, StreamingContext context){
-			// Reset the property value using the GetValue method.
-			this.root = (Node) info.GetValue("Tree", typeof(Node));
-		}
-
 	}
 }

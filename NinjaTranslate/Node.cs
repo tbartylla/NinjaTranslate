@@ -10,6 +10,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace PatrixiaTrie {
     public class Node {
 
+        public enum MatchingType {
+            MATCH_EXACT = 0,
+            MATCH_INEXACT = 1,
+            MATCH_INSERT = 2
+        }
+
         protected List<Node> children = new List<Node>();
         protected Node parent;
         protected String symbol;
@@ -139,7 +145,7 @@ namespace PatrixiaTrie {
             nodes.RemoveAll(node => node.getSymbol().Equals(symbol));
         }
 
-        public Node goToMatchingNode(String query, bool exactMatch) {
+        public Node goToMatchingNode(String query, MatchingType type) {
             if (query.Count() > 0) {
                 Node child = this.findChild(query.ToString()[0]);
                 if (child == null) {
@@ -147,14 +153,20 @@ namespace PatrixiaTrie {
                 }
                 // filter wrong nodes
                 if (!query.StartsWith(child.getSymbol())) {
-                    if (exactMatch)
+                    if (type == MatchingType.MATCH_EXACT || type == MatchingType.MATCH_INSERT)
                         return null;
                     else return child;
                 }
                 query = query.Substring(child.getSymbol().Count());
-                Node nextChild = child.goToMatchingNode(query);
-                if (nextChild == null)
+                Node nextChild = child.goToMatchingNode(query, type);
+
+                //this is the case when there is either no matching translation in the trie, or we found a translation
+                if (nextChild == null) {
+                    if (type == MatchingType.MATCH_EXACT && query.Length != 0) {
+                        return null;
+                    }
                     return child;
+                } 
                 else
                     return nextChild;
             }
@@ -162,7 +174,7 @@ namespace PatrixiaTrie {
         }
 
         public Node goToMatchingNode(String query) {
-            return this.goToMatchingNode(query, true);
+            return this.goToMatchingNode(query, MatchingType.MATCH_EXACT);
         }
     }
 }
