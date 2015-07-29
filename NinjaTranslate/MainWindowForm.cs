@@ -32,7 +32,9 @@ namespace NinjaTranslate
 
         public MainWindow(){
             InitializeComponent();
-
+            //minimize window
+            this.ShowInTaskbar = false;
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             // register the event that is fired after the key press.
             hook.KeyPressed += new EventHandler<KeyPressedEventArgs>(hook_KeyPressed);
             // register the control + alt + N combination as hot key.
@@ -84,7 +86,6 @@ namespace NinjaTranslate
 
         private void Form1_SizeChanged(object sender, EventArgs e) {
             if (this.WindowState == FormWindowState.Minimized) {
-                this.ShowInTaskbar = false;
                 this.notifyIcon1.Visible = true;
                 notifyIcon1.BalloonTipText = "NinjaTranslate has been minimized";
                 notifyIcon1.ShowBalloonTip(1000);
