@@ -18,7 +18,10 @@ namespace NinjaTranslate
         [STAThread]
         static void Main() {
             dr.readRawDictionary();
-            Application.Run(new MainWindow());
+            MainWindow mW = new MainWindow();
+            //check if construction went well or if window is marked as disposed
+            if (!mW.IsDisposed)
+                Application.Run(mW);
         }   
 
         public void getSelectedText() {

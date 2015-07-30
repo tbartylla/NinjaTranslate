@@ -35,14 +35,20 @@ namespace NinjaTranslate
             //minimize window
             this.ShowInTaskbar = false;
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
-            // register the event that is fired after the key press.
-            hook.KeyPressed += new EventHandler<KeyPressedEventArgs>(hook_KeyPressed);
-            // register the control + alt + N combination as hot key.
-            hook.RegisterHotKey((ModifierKeys)2 | (ModifierKeys)1, Keys.N);
-            // register the control + alt + B combination as hot key.
-            hookInput.KeyPressed += new EventHandler<KeyPressedEventArgs>(hookInput_KeyPressed);
-            hookInput.RegisterHotKey((ModifierKeys)2 | (ModifierKeys)1, Keys.B);
-            txtbox_search_shortkey.Text = "Strg + Alt + N";
+            try {
+                // register the event that is fired after the key press.
+                hook.KeyPressed += new EventHandler<KeyPressedEventArgs>(hook_KeyPressed);
+                // register the control + alt + N combination as hot key.
+                hook.RegisterHotKey((ModifierKeys)2 | (ModifierKeys)1, Keys.N);
+                // register the control + alt + B combination as hot key.
+                hookInput.KeyPressed += new EventHandler<KeyPressedEventArgs>(hookInput_KeyPressed);
+                hookInput.RegisterHotKey((ModifierKeys)2 | (ModifierKeys)1, Keys.B);
+                txtbox_search_shortkey.Text = "Strg + Alt + N";
+            }
+            catch (InvalidOperationException e) {
+                System.Windows.Forms.MessageBox.Show("NinjaTranslate couldn't register the necessary hotkeys. It seems like another program uses them. Try to close them :)", "NinjaTranslate found an error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
         }
 
         void hook_KeyPressed(object sender, KeyPressedEventArgs e){
