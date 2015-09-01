@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 namespace NinjaTranslate {
     
     class Normalizer {
+        /// <summary>
+        /// normalizes the strings we put in the patricia tree. Brackets, multiple spaces and invalid word will be deleted.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public String normalize(String input) {
             String normalizedInput = removeInvalidWords(removeMultipleSpaces(removeRedundantInformation(removeBrackets(input))));
             if (normalizedInput == null || normalizedInput.Length == 0 || (normalizedInput.Length == 1 && input.Length > 1))
@@ -17,8 +22,24 @@ namespace NinjaTranslate {
         }
 
         /// <summary>
-        /// Checks if the string is valid. Removes every string that contains following characters: 
-        /// '...', '...,' zahlen, '-', mehr als 3 wörter, 
+        /// Normalizes the selected text by removing leading and tailing whitespaces. Also removes following special characters: ,;.:\\\-_'!"/\()[\]{}<>?
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public String normalizeSearchInput(String input) {
+            string regex = @"[,;.:\-_'!""/\()[\]{}<>?]";
+            string normalizeText = input.ToLowerInvariant().Trim();
+            Match m = Regex.Match(normalizeText, regex, RegexOptions.IgnoreCase);
+            if (m.Success) {
+                normalizeText = Regex.Replace(normalizeText, regex, "");
+            }
+
+            return normalizeText;
+        }
+
+        /// <summary>
+        /// Checks if the string is valid. Removes every string that contains numbers, more than three word or following characters: 
+        /// \?§$%=*+~λ#. Also deletes word beginning with '-'.
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -28,7 +49,7 @@ namespace NinjaTranslate {
             if (m.Success || input.Split(' ').GetLength(0) > 3) {
                 return null;
             }
-
+            
             return input;
         }
 
@@ -62,7 +83,7 @@ namespace NinjaTranslate {
         /// <returns></returns>
         private static String removeBrackets(String input) {
             string regex = "(\\[.*?\\])|(\".*?\")|('.*?')|(\\(.*?\\))|(\\<.*?\\>)|(\\{.*?\\})|(\\».*?\\«)";
-            return Regex.Replace(input, regex, "").Trim(); // removes leading and tailing whitespaces
+            return Regex.Replace(input, regex, "").Trim(); 
         }
 
         /// <summary>
@@ -73,7 +94,8 @@ namespace NinjaTranslate {
         /// <returns></returns>
         private static String removeMultipleSpaces(String input) {
             Regex regex = new Regex(@"[ ]{2,}");      // substitutes multiple whitespaces
-            return regex.Replace(input, @" ").Trim(); // removes leading and tailing whitespaces
+            return regex.Replace(input, @" ").Trim(); 
         }
+
     }
 }

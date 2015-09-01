@@ -113,6 +113,7 @@ namespace NinjaTranslate {
         }
         
         public static String translate(string input) {
+            input = n.normalizeSearchInput(input);
             if (input == null)
                 return "no processible content";
             if (tree.processQuery(input) != null) {

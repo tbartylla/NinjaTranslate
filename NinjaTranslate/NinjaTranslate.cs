@@ -48,7 +48,7 @@ namespace NinjaTranslate
             string textFromClipboard = GetActiveWindow(setClipboardData);
             if (textFromClipboard == null)
                 return null;
-            return DictionaryReader.translate(textFromClipboard.ToLowerInvariant().Trim());  
+            return DictionaryReader.translate(textFromClipboard);  
         }
 
         [DllImport("USER32.DLL")]
