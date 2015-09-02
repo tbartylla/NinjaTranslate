@@ -52,7 +52,8 @@ namespace NinjaTranslate
         }
 
         void hook_KeyPressed(object sender, KeyPressedEventArgs e){
-            textBox1.Text = nt.getTranslation(false) + i++ + "\n";
+            notifyIcon1.BalloonTipText = nt.getTranslation(true) + i++ + "\n";
+            notifyIcon1.ShowBalloonTip(500);
         }
 
 

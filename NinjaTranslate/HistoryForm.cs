@@ -134,7 +134,7 @@ namespace NinjaTranslate {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddXMLElement(object sender, EventArgs e) {
+        public void AddXMLElement(String from, String to) {
             CreateXMLFile();
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(xmlFilePath);
@@ -148,8 +148,8 @@ namespace NinjaTranslate {
             XmlElement xmlDate = xmlDoc.CreateElement("date");
 
             xmlTranslation.InnerText = "Item";
-            xmlFrom.InnerText = "from";
-            xmlTo.InnerText = "To";
+            xmlFrom.InnerText = from;
+            xmlTo.InnerText = to;
             xmlGenus.InnerText = "genus";
             xmlWordtype.InnerText = "wordtype";
             xmlDate.InnerText = "Date";

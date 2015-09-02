@@ -121,6 +121,8 @@ namespace NinjaTranslate {
                 foreach(string translation in tree.processQuery(input).getTranslations()){
                     translations += " "+translation+",";
                 }
+                HistoryForm iH = new HistoryForm();
+                iH.AddXMLElement(input, translations);
                 return "word: '"+tree.processQuery(input).getQueryBottomUp()+"' translation: '"+translations+"'";
             }
             return "Couldn't find the word '" + input + "' in the dictionary.";
