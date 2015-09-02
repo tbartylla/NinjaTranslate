@@ -108,5 +108,16 @@ namespace NinjaTranslate
             notifyIcon1.BalloonTipText = nt.getTranslation(true) + i++ + "\n";
             notifyIcon1.ShowBalloonTip(500);
         }
+
+        /// <summary>
+        /// Shows the history form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void History_Btn_Click(object sender, EventArgs e) {
+            HistoryForm iH = new HistoryForm();
+            iH.Show();
+            iH.Activate();
+        }
     }
 }

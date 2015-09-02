@@ -36,6 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.description = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.history_btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -92,14 +93,24 @@
             this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "NinjaTranslate";
-            this.notifyIcon1.Visible = false;
             this.notifyIcon1.Click += new System.EventHandler(this.notifyIcon1_Click);
+            // 
+            // history_btn
+            // 
+            this.history_btn.Location = new System.Drawing.Point(272, 203);
+            this.history_btn.Name = "history_btn";
+            this.history_btn.Size = new System.Drawing.Size(80, 23);
+            this.history_btn.TabIndex = 8;
+            this.history_btn.Text = "Show History";
+            this.history_btn.UseVisualStyleBackColor = true;
+            this.history_btn.Click += new System.EventHandler(this.History_Btn_Click);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(366, 203);
+            this.ClientSize = new System.Drawing.Size(369, 238);
+            this.Controls.Add(this.history_btn);
             this.Controls.Add(this.description);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtbox_search_shortkey);
@@ -109,7 +120,6 @@
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "NinjaTranslate Test";
-            this.WindowState = System.Windows.Forms.FormWindowState.Normal;
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -125,6 +135,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label description;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.Button history_btn;
     }
 }
 
