@@ -6,7 +6,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsInput;
 
 namespace NinjaTranslate {
     class SystemSource : ITranslationSource{
@@ -60,15 +59,6 @@ namespace NinjaTranslate {
         public void SetNotificationService(INotificationService notificationService) {
             this.notificationService = notificationService;
         }
-
-        [DllImport("USER32.DLL")]
-        public static extern bool SetForegroundWindow(IntPtr hWnd);
-
-        [DllImport("user32.dll")]
-        static extern IntPtr GetForegroundWindow();
-
-        [DllImport("user32.dll")]
-        static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
         private void SaveToClipboard(object data) {
             try {

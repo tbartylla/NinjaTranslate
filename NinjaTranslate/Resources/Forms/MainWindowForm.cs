@@ -23,7 +23,7 @@ namespace NinjaTranslate
             //minimize window when starting
             this.ShowInTaskbar = false;
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
-            
+            this.Visible = false;
         }
 
         public void ShowNotification(String text, int ms) {
@@ -55,6 +55,8 @@ namespace NinjaTranslate
                 this.notifyIcon1.Visible = true;
                 notifyIcon1.BalloonTipText = "NinjaTranslate has been minimized";
                 notifyIcon1.ShowBalloonTip(1000);
+                this.ShowInTaskbar = false;
+                this.Visible = false;
             }
             if (this.WindowState == FormWindowState.Normal) {
                 this.notifyIcon1.Visible = false;

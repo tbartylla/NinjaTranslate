@@ -43,9 +43,7 @@ namespace NinjaTranslate {
                 foreach (string translation in treeNode.getTranslations()) {
                     translations += " " + translation + ",";
                 }
-                //to be put in a better place
-                //HistoryForm iH = new HistoryForm();
-                //iH.AddXMLElement(input, translations);
+
                 return "word: '" + treeNode.getQueryBottomUp() + "' translation: '" + translations + "'";
             }
             return "Couldn't find the word '" + input + "' in the dictionary.";

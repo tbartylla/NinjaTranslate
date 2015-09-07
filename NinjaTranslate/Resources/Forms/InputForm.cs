@@ -33,6 +33,7 @@ namespace NinjaTranslate {
                 string translation = this.translationService.Translate(this.textBox1.Text.ToString());
                 if (this.showNotification && this.notificationService != null)
                     this.notificationService.Notify(translation);
+                this.textBox1.Text = "type to translate";
                 this.Hide();
             }
         }
