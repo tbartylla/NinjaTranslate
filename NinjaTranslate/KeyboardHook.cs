@@ -9,7 +9,9 @@ using System.Runtime.InteropServices;
 using System.Windows.Interop;
 
 namespace NinjaTranslate {
-
+    /// <summary>
+    /// KeyboardHook from: http://www.liensberger.it/web/blog/?p=207
+    /// </summary>
     public sealed class KeyboardHook : IDisposable {
         // Registers a hot key with Windows.
         [DllImport("user32.dll")]
