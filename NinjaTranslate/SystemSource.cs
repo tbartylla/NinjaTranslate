@@ -32,14 +32,15 @@ namespace NinjaTranslate {
             return translation;
         }
 
-        // TODO: FIXME. at this point i'm not sure anymore, if this works. 
-        // seems like this method always has problems whenever a thread exits 
         private string GetActiveWindow(bool setClipboardData) {
             //copy data from clipboard
             object oldClipboardDataObject = Clipboard.GetData(DataFormats.UnicodeText);
             
             //add a little wait time to prevent clipboard beeing locked when we want another app to copy current selection into it
-            System.Threading.Thread.Sleep(400);
+            int clipboardAccessTimer = 400;
+            //Takes value specified in config.ini if it is valid. Otherwise it's 400. TODO: maybe change to a much higher value to make sure it always works.
+            int.TryParse(Config.GetValue("clipboardAccessTimer"), out clipboardAccessTimer);
+            System.Threading.Thread.Sleep(clipboardAccessTimer);
             SendKeys.SendWait("^(c)");
                         
             object clipboardText = Clipboard.GetData(DataFormats.UnicodeText);
