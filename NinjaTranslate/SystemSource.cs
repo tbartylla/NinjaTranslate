@@ -10,10 +10,15 @@ using System.Windows.Forms;
 namespace NinjaTranslate {
     class SystemSource : ITranslationSource{
 
-        ITranslationService translationService;
-        INotificationService notificationService;
+        protected ITranslationService translationService;
+        protected INotificationService notificationService;
 
-        bool setClipboardData = true;
+        protected bool setClipboardData = true;
+        protected int clipboardAccessTimer = 400;
+
+        public void SetClipboardAccessTimer(int ms) {
+            this.clipboardAccessTimer = ms;
+        }
 
         public void SetClipboardData(bool boo) {
             this.setClipboardData = boo;
@@ -37,10 +42,7 @@ namespace NinjaTranslate {
             object oldClipboardDataObject = Clipboard.GetData(DataFormats.UnicodeText);
             
             //add a little wait time to prevent clipboard beeing locked when we want another app to copy current selection into it
-            int clipboardAccessTimer = 400;
-            //Takes value specified in config.ini if it is valid. Otherwise it's 400. TODO: maybe change to a much higher value to make sure it always works.
-            int.TryParse(Config.GetValue("clipboardAccessTimer"), out clipboardAccessTimer);
-            System.Threading.Thread.Sleep(clipboardAccessTimer);
+            System.Threading.Thread.Sleep(this.clipboardAccessTimer);
             SendKeys.SendWait("^(c)");
                         
             object clipboardText = Clipboard.GetData(DataFormats.UnicodeText);

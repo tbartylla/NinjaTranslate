@@ -53,7 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BubbleNotification.cs" />
-    <Compile Include="Config.cs" />
     <Compile Include="DictLoader.cs" />
     <Compile Include="Interfaces\INotificationService.cs" />
     <Compile Include="Interfaces\ITranslationService.cs" />
@@ -136,6 +135,12 @@
     <Content Include="Resources\NT16px.ico" />
     <Content Include="Resources\NTicon.ico" />
     <None Include="Resources\splash_screen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ntutil\ntutil.csproj">
+      <Project>{01114ab5-5092-4e8c-b990-437b4f49c63f}</Project>
+      <Name>ntutil</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

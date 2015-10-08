@@ -5,14 +5,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text;
 
+using ntutil;
 
 namespace NinjaTranslate
 {
     class NinjaTranslateMain {
-        private DictLoader dr = new DictLoader();
 
         [STAThread]
         static void Main() {
+            //Initiate update process
+            NinjaTranslateMain.Update(Config.GetValue("version"), Config.GetValue("updateStep"));
+
             //TODO Change following with filter structure to be more flexible
             Normalizer normalizer = new Normalizer();
             
@@ -38,9 +41,13 @@ namespace NinjaTranslate
 
             //initiate sources to be translated from
             SystemSource systemSource = new SystemSource();
-            InputForm inputSource = new InputForm();
+            int clipboardAccessTimer = 500;
+            int.TryParse(Config.GetValue("clipboardAccessTimer"), out clipboardAccessTimer);
+            systemSource.SetClipboardAccessTimer(clipboardAccessTimer);
             systemSource.SetTranslationService(translationCenter);
             systemSource.SetNotificationService(notification);
+
+            InputForm inputSource = new InputForm();
             inputSource.SetTranslationService(translationCenter);
             inputSource.SetNotificationService(notification);
 
@@ -68,7 +75,19 @@ namespace NinjaTranslate
             //check if construction went well or if window is marked as disposed
             if (!mainWindow.IsDisposed)
                 Application.Run(mainWindow);
-        }   
+        }
+
+        static void Update(String version, String mode) {
+            switch (mode) {
+                case "update":
+                    System.Diagnostics.Process.Start("Updater.exe", "update " + version);
+                    break;
+                case "copy":
+                    System.Diagnostics.Process.Start("Updater.exe", "copy");
+                    System.Environment.Exit(5);
+                    break;
+            }
+        }
 
     }
 }

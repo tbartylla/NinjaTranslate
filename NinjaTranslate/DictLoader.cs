@@ -101,7 +101,7 @@ namespace NinjaTranslate {
                     }
 
                     if (sF != null)
-                        sr.Close();
+                        sF.Close();
      
                     //serialize tree for next start
                     byte[] serialization = PatrixiaTrie.PatrixiaTrieFileMapper.Serialize(pTrie.getRootNode());
