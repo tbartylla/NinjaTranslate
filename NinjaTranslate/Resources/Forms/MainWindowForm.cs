@@ -14,12 +14,20 @@ using System.Windows.Interop;
 using System.Windows.Input;
 using System.Threading;
 
+using ntutil;
+
 namespace NinjaTranslate
 {
-    public partial class MainWindow : Form
-    {
-        public MainWindow(){
+    public partial class MainWindow : Form {
+        public MainWindow() {
             InitializeComponent();
+
+            //sets the numeric textfields to the values saved in the config.ini
+            this.numeric_notification.Value = new decimal(new int[] {
+                Int32.Parse(Config.GetValue("notificationDuration")),0,0,0});
+            this.numeric_clipboardAccess.Value = new decimal(new int[] {
+                Int32.Parse(Config.GetValue("clipboardAccessTimer")),0,0,0});
+
             //minimize window when starting
             this.ShowInTaskbar = false;
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
@@ -38,7 +46,7 @@ namespace NinjaTranslate
 
         private void txtbox_search_shortkey_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e) {
             // shows the current shortkey combination
-            txtbox_search_shortkey.Text = e.Modifiers.ToString() + " + " + e.KeyCode.ToString();          
+            txtbox_search_shortkey.Text = e.Modifiers.ToString() + " + " + e.KeyCode.ToString();
             // TODO: check if current combination is valid.
         }
 
@@ -69,10 +77,62 @@ namespace NinjaTranslate
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void History_Btn_Click(object sender, EventArgs e) {
+        private void Btn_history_Click(object sender, EventArgs e) {
             HistoryForm iH = new HistoryForm();
             iH.Show();
             iH.Activate();
+        }
+
+        private void Btn_browse_dict_Click(object sender, EventArgs e) {
+            // Displays an OpenFileDialog
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Text Files|*.txt";
+            openFileDialog1.Title = "Select a Dictionary";
+
+            // Show the Dialog.
+            // If the user clicked OK in the dialog then paste the path to its textbox.
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                textBox_path_to_dict.Text = openFileDialog1.FileName;
+            }
+        }
+
+        private void Btn_browse_tree_Click(object sender, EventArgs e) {
+            // Displays an OpenFileDialog
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Tree Files|*.tree";
+            openFileDialog1.Title = "Select a Patricia Tree";
+
+            // Show the Dialog.
+            // If the user clicked OK in the dialog then paste the path to its textbox.
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                textBox_path_to_tree.Text = openFileDialog1.FileName;
+            }
+        }
+
+        private void Btn_add_dict_Click(object sender, EventArgs e) {
+            //TODO Add Dictionary
+        }
+
+        private void Btn_restore_shortkeys_Click(object sender, EventArgs e) {
+            //TODO Restore Default Shortkeys
+        }
+
+        private void Btn_cancel_Click(object sender, EventArgs e) {
+            //TODO Cancel
+        }
+
+        private void Btn_save_Click(object sender, EventArgs e) {
+            //TODO Save
+        }
+
+        private void ComboBox_dict_SelectedIndexChanged(object sender, EventArgs e) {
+            //TODO FIXME if Abfrage ist Unsinn
+            if (this.comboBox_dict.SelectedItem.ToString() != "idk") {
+                textBox_path_to_dict.ReadOnly = false;
+                textBox_path_to_tree.ReadOnly = false;
+                btn_browse_dict.Enabled = true;
+                btn_browse_tree.Enabled = true;
+            }
         }
     }
 }

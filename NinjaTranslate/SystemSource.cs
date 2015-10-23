@@ -69,7 +69,7 @@ namespace NinjaTranslate {
             }
             catch (System.Runtime.InteropServices.ExternalException e) {
                 Console.WriteLine("Oops! Couldn't save your stuff back to Clipboard. Let's try it again.");
-                System.Threading.Thread.Sleep(200);
+                System.Threading.Thread.Sleep(500);
                 SaveToClipboard(data);
             }
         }

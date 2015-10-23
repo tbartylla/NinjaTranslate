@@ -65,7 +65,6 @@ namespace NinjaTranslate
                 inputHook.KeyPressed += new EventHandler<KeyPressedEventArgs>(delegate(object sender, KeyPressedEventArgs e) {
                     inputSource.TriggerTranslation(true);    
                 });
-                //TODO Toni wants to comment sth here
                 inputHook.RegisterHotKey((ModifierKeys)2 | (ModifierKeys)1, Keys.B);
             }
             catch (InvalidOperationException e) {
