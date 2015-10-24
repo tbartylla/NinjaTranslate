@@ -72,6 +72,7 @@
             // 
             // txtbox_search_shortkey
             // 
+            this.txtbox_search_shortkey.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtbox_search_shortkey.Location = new System.Drawing.Point(210, 22);
             this.txtbox_search_shortkey.Name = "txtbox_search_shortkey";
             this.txtbox_search_shortkey.ReadOnly = true;
@@ -347,6 +348,7 @@
             // 
             // txtbox_expand_shortkey
             // 
+            this.txtbox_expand_shortkey.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtbox_expand_shortkey.Location = new System.Drawing.Point(210, 74);
             this.txtbox_expand_shortkey.Name = "txtbox_expand_shortkey";
             this.txtbox_expand_shortkey.ReadOnly = true;
@@ -355,6 +357,7 @@
             // 
             // txtbox_openinput_shortkey
             // 
+            this.txtbox_openinput_shortkey.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtbox_openinput_shortkey.Location = new System.Drawing.Point(210, 48);
             this.txtbox_openinput_shortkey.Name = "txtbox_openinput_shortkey";
             this.txtbox_openinput_shortkey.ReadOnly = true;
