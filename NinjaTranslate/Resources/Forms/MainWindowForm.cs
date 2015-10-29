@@ -29,6 +29,10 @@ namespace NinjaTranslate
                 Int32.Parse(Config.GetValue("clipboardAccessTimer")),0,0,0});
 
             //minimize window when starting
+            MinimizeForm();
+        }
+
+        private void MinimizeForm() {
             this.ShowInTaskbar = false;
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Visible = false;
@@ -93,6 +97,7 @@ namespace NinjaTranslate
             // If the user clicked OK in the dialog then paste the path to its textbox.
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                 textBox_path_to_dict.Text = openFileDialog1.FileName;
+                Config.SetValue("path", textBox_path_to_dict.Text);
             }
         }
 
@@ -106,11 +111,13 @@ namespace NinjaTranslate
             // If the user clicked OK in the dialog then paste the path to its textbox.
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                 textBox_path_to_tree.Text = openFileDialog1.FileName;
+                Config.SetValue("path_tree", textBox_path_to_tree.Text);
             }
         }
 
         private void Btn_add_dict_Click(object sender, EventArgs e) {
-            //TODO Add Dictionary
+            // TODO change stuff here 
+            Btn_browse_dict_Click(sender, e);
         }
 
         private void Btn_restore_shortkeys_Click(object sender, EventArgs e) {
@@ -118,21 +125,39 @@ namespace NinjaTranslate
         }
 
         private void Btn_cancel_Click(object sender, EventArgs e) {
-            //TODO Cancel
+            // TODO minimize form
         }
 
         private void Btn_save_Click(object sender, EventArgs e) {
-            //TODO Save
+            Config.Save();
+            // TODO minimize form
         }
 
         private void ComboBox_dict_SelectedIndexChanged(object sender, EventArgs e) {
-            //TODO FIXME if Abfrage ist Unsinn
-            if (this.comboBox_dict.SelectedItem.ToString() != "idk") {
-                textBox_path_to_dict.ReadOnly = false;
-                textBox_path_to_tree.ReadOnly = false;
-                btn_browse_dict.Enabled = true;
-                btn_browse_tree.Enabled = true;
-            }
+            textBox_path_to_dict.ReadOnly = false;
+            textBox_path_to_tree.ReadOnly = false;
+            btn_browse_dict.Enabled = true;
+            btn_browse_tree.Enabled = true;
+        }
+
+        private void numeric_notification_ValueChanged(object sender, EventArgs e) {
+            Config.SetValue("notificationDuration", this.numeric_notification.Value.ToString());
+        }
+
+        private void numeric_clipboardAccess_ValueChanged(object sender, EventArgs e) {
+            Config.SetValue("clipboardAccessTimer", this.numeric_clipboardAccess.Value.ToString());
+        }
+
+        private void menuItem1_Click(object sender, EventArgs e) {
+            // TODO Settings
+        }
+
+        private void menuItem2_Click(object sender, EventArgs e) {
+            // TODO Donate
+        }
+
+        private void menuItem3_Click(object sender, EventArgs e) {
+            // TODO Exit
         }
     }
 }
