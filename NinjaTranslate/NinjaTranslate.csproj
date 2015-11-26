@@ -56,6 +56,12 @@
     <Compile Include="DictLoader.cs" />
     <Compile Include="Interfaces\INotificationService.cs" />
     <Compile Include="Interfaces\ITranslationService.cs" />
+    <Compile Include="Resources\Forms\AppearanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Resources\Forms\AppearanceForm.Designer.cs">
+      <DependentUpon>AppearanceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Forms\HistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,9 @@
     <Compile Include="SystemSource.cs" />
     <Compile Include="TranslationCenter.cs" />
     <Compile Include="Interfaces\ITranslationSource.cs" />
+    <EmbeddedResource Include="Resources\Forms\AppearanceForm.resx">
+      <DependentUpon>AppearanceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Forms\HistoryForm.resx">
       <DependentUpon>HistoryForm.cs</DependentUpon>
     </EmbeddedResource>

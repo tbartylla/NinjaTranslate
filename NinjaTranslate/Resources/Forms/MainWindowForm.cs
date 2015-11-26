@@ -15,10 +15,16 @@ using System.Windows.Input;
 using System.Threading;
 
 using ntutil;
+using NinjaTranslate.Resources.Forms;
 
 namespace NinjaTranslate
 {
     public partial class MainWindow : Form {
+        
+        // HistoryForm iH = new HistoryForm();
+        NotificationForm notificationForm = new NotificationForm();
+        AppearanceForm appearanceForm = new AppearanceForm();
+        
         public MainWindow() {
             InitializeComponent();
 
@@ -28,8 +34,12 @@ namespace NinjaTranslate
             this.numeric_clipboardAccess.Value = new decimal(new int[] {
                 Int32.Parse(Config.GetValue("clipboardAccessTimer")),0,0,0});
 
-            //minimize window when starting
             MinimizeForm();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
+            MinimizeForm();
+            e.Cancel = true;
         }
 
         private void MinimizeForm() {
@@ -59,6 +69,7 @@ namespace NinjaTranslate
         }
 
         private void notifyIcon1_Click(object sender, EventArgs e) {
+            this.Show();
             this.WindowState = FormWindowState.Normal;
         }
 
@@ -76,17 +87,13 @@ namespace NinjaTranslate
             }
         }
 
-        /// <summary>
-        /// Shows the history form.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        // History
         private void Btn_history_Click(object sender, EventArgs e) {
-            HistoryForm iH = new HistoryForm();
-            iH.Show();
-            iH.Activate();
+            notificationForm.Show(); 
+            // iH.Show();
         }
 
+        // Dictionary Location
         private void Btn_browse_dict_Click(object sender, EventArgs e) {
             // Displays an OpenFileDialog
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -101,63 +108,57 @@ namespace NinjaTranslate
             }
         }
 
-        private void Btn_browse_tree_Click(object sender, EventArgs e) {
-            // Displays an OpenFileDialog
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "Tree Files|*.tree";
-            openFileDialog1.Title = "Select a Patricia Tree";
-
-            // Show the Dialog.
-            // If the user clicked OK in the dialog then paste the path to its textbox.
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                textBox_path_to_tree.Text = openFileDialog1.FileName;
-                Config.SetValue("path_tree", textBox_path_to_tree.Text);
-            }
-        }
-
+        // Add Dictionary
         private void Btn_add_dict_Click(object sender, EventArgs e) {
             // TODO change stuff here 
             Btn_browse_dict_Click(sender, e);
         }
 
+        // Restore Default Shortkeys
         private void Btn_restore_shortkeys_Click(object sender, EventArgs e) {
             //TODO Restore Default Shortkeys
         }
 
+        // Cancel
         private void Btn_cancel_Click(object sender, EventArgs e) {
-            // TODO minimize form
+            MinimizeForm();
         }
 
+        // Save
         private void Btn_save_Click(object sender, EventArgs e) {
             Config.Save();
-            // TODO minimize form
+            MinimizeForm();
         }
 
+        // Select Dictionary
         private void ComboBox_dict_SelectedIndexChanged(object sender, EventArgs e) {
             textBox_path_to_dict.ReadOnly = false;
-            textBox_path_to_tree.ReadOnly = false;
             btn_browse_dict.Enabled = true;
-            btn_browse_tree.Enabled = true;
         }
 
+        // Notification Duration
         private void numeric_notification_ValueChanged(object sender, EventArgs e) {
             Config.SetValue("notificationDuration", this.numeric_notification.Value.ToString());
         }
 
+        // Clipboard Acces Timer
         private void numeric_clipboardAccess_ValueChanged(object sender, EventArgs e) {
             Config.SetValue("clipboardAccessTimer", this.numeric_clipboardAccess.Value.ToString());
         }
 
+        // Settings
         private void menuItem1_Click(object sender, EventArgs e) {
-            // TODO Settings
+            notifyIcon1_Click(sender, e);
         }
 
+        // Donate
         private void menuItem2_Click(object sender, EventArgs e) {
             // TODO Donate
         }
 
+        // Exit NinjaTranslate
         private void menuItem3_Click(object sender, EventArgs e) {
-            // TODO Exit
+            System.Windows.Forms.Application.Exit();
         }
     }
 }

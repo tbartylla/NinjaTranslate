@@ -49,18 +49,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btn_add_dict = new System.Windows.Forms.Button();
-            this.btn_browse_tree = new System.Windows.Forms.Button();
-            this.textBox_path_to_tree = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.btn_browse_dict = new System.Windows.Forms.Button();
             this.textBox_path_to_dict = new System.Windows.Forms.TextBox();
             this.comboBox_dict = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn_restore_shortkeys = new System.Windows.Forms.Button();
-            this.txtbox_expand_shortkey = new System.Windows.Forms.TextBox();
             this.txtbox_openinput_shortkey = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btn_save = new System.Windows.Forms.Button();
@@ -124,7 +119,7 @@
             // menuItem3
             // 
             this.menuItem3.Index = 2;
-            this.menuItem3.Text = "Exit";
+            this.menuItem3.Text = "Exit NinjaTranslate";
             this.menuItem3.Click += new System.EventHandler(this.menuItem3_Click);
             // 
             // btn_history
@@ -257,9 +252,6 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btn_add_dict);
-            this.groupBox2.Controls.Add(this.btn_browse_tree);
-            this.groupBox2.Controls.Add(this.textBox_path_to_tree);
-            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.btn_browse_dict);
             this.groupBox2.Controls.Add(this.textBox_path_to_dict);
             this.groupBox2.Controls.Add(this.comboBox_dict);
@@ -281,34 +273,6 @@
             this.btn_add_dict.Text = "Add Dictionary";
             this.btn_add_dict.UseVisualStyleBackColor = true;
             this.btn_add_dict.Click += new System.EventHandler(this.Btn_add_dict_Click);
-            // 
-            // btn_browse_tree
-            // 
-            this.btn_browse_tree.Enabled = false;
-            this.btn_browse_tree.Location = new System.Drawing.Point(268, 108);
-            this.btn_browse_tree.Name = "btn_browse_tree";
-            this.btn_browse_tree.Size = new System.Drawing.Size(72, 22);
-            this.btn_browse_tree.TabIndex = 22;
-            this.btn_browse_tree.Text = "Browse";
-            this.btn_browse_tree.UseVisualStyleBackColor = true;
-            this.btn_browse_tree.Click += new System.EventHandler(this.Btn_browse_tree_Click);
-            // 
-            // textBox_path_to_tree
-            // 
-            this.textBox_path_to_tree.Location = new System.Drawing.Point(9, 109);
-            this.textBox_path_to_tree.Name = "textBox_path_to_tree";
-            this.textBox_path_to_tree.ReadOnly = true;
-            this.textBox_path_to_tree.Size = new System.Drawing.Size(252, 20);
-            this.textBox_path_to_tree.TabIndex = 21;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 93);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(107, 13);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "Path to Patricia Tree:";
             // 
             // btn_browse_dict
             // 
@@ -353,9 +317,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btn_restore_shortkeys);
-            this.groupBox3.Controls.Add(this.txtbox_expand_shortkey);
             this.groupBox3.Controls.Add(this.txtbox_openinput_shortkey);
-            this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.txtbox_search_shortkey);
@@ -376,15 +338,6 @@
             this.btn_restore_shortkeys.UseVisualStyleBackColor = true;
             this.btn_restore_shortkeys.Click += new System.EventHandler(this.Btn_restore_shortkeys_Click);
             // 
-            // txtbox_expand_shortkey
-            // 
-            this.txtbox_expand_shortkey.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtbox_expand_shortkey.Location = new System.Drawing.Point(210, 74);
-            this.txtbox_expand_shortkey.Name = "txtbox_expand_shortkey";
-            this.txtbox_expand_shortkey.ReadOnly = true;
-            this.txtbox_expand_shortkey.Size = new System.Drawing.Size(129, 20);
-            this.txtbox_expand_shortkey.TabIndex = 22;
-            // 
             // txtbox_openinput_shortkey
             // 
             this.txtbox_openinput_shortkey.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -393,15 +346,6 @@
             this.txtbox_openinput_shortkey.ReadOnly = true;
             this.txtbox_openinput_shortkey.Size = new System.Drawing.Size(129, 20);
             this.txtbox_openinput_shortkey.TabIndex = 21;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 77);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(107, 13);
-            this.label11.TabIndex = 20;
-            this.label11.Text = "Expand Output Form:";
             // 
             // label10
             // 
@@ -462,6 +406,7 @@
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "NinjaTranslate - Settings";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -494,19 +439,14 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btn_add_dict;
-        private System.Windows.Forms.Button btn_browse_tree;
-        private System.Windows.Forms.TextBox textBox_path_to_tree;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btn_browse_dict;
         private System.Windows.Forms.TextBox textBox_path_to_dict;
         private System.Windows.Forms.ComboBox comboBox_dict;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btn_restore_shortkeys;
-        private System.Windows.Forms.TextBox txtbox_expand_shortkey;
         private System.Windows.Forms.TextBox txtbox_openinput_shortkey;
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.Button btn_cancel;
