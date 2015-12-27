@@ -23,7 +23,7 @@ namespace NinjaTranslate
         
         // HistoryForm iH = new HistoryForm();
         NotificationForm notificationForm = new NotificationForm();
-        AppearanceForm appearanceForm = new AppearanceForm();
+        // AppearanceForm appearanceForm = new AppearanceForm();
         
         public MainWindow() {
             InitializeComponent();
@@ -89,6 +89,7 @@ namespace NinjaTranslate
 
         // History
         private void Btn_history_Click(object sender, EventArgs e) {
+            // TODO show History Form
             notificationForm.Show(); 
             // iH.Show();
         }

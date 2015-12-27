@@ -204,7 +204,7 @@
             // 
             this.numeric_notification.Location = new System.Drawing.Point(210, 25);
             this.numeric_notification.Maximum = new decimal(new int[] {
-            2000,
+            15000,
             0,
             0,
             0});

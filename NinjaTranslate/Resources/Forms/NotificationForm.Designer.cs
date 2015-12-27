@@ -45,7 +45,7 @@
             this.notificationContent.ReadOnly = true;
             this.notificationContent.Size = new System.Drawing.Size(343, 110);
             this.notificationContent.TabIndex = 0;
-            this.notificationContent.TabStop = false; // needs to be set otherwise the content will be highlighted as soon as the notification form appears.
+            this.notificationContent.TabStop = false;
             this.notificationContent.Text = "Lorem Ipsum dolor est emir";
             // 
             // notificationHeader

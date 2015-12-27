@@ -6,6 +6,8 @@ using System.Windows.Forms;
 using System.Text;
 
 using ntutil;
+using NinjaTranslate.Resources;
+using NinjaTranslate.Resources.Forms;
 
 namespace NinjaTranslate
 {
@@ -22,6 +24,7 @@ namespace NinjaTranslate
             //load windows
             SplashForm sf = new SplashForm();
             MainWindow mainWindow = new MainWindow();
+            NotificationForm notificationForm = new NotificationForm();
 
             //load data
             DictLoader dc = new DictLoader();
@@ -35,9 +38,9 @@ namespace NinjaTranslate
             translationCenter.SetTranslationTree(translationTree);
 
             //initiate notification service
-            BubbleNotification notification = new BubbleNotification();
+            CustomNotification notification = new CustomNotification();
             notification.SetNotificationDuration(Int32.Parse(Config.GetValue("notificationDuration")));
-            notification.SetForm(mainWindow);
+            notification.SetForm(notificationForm);
 
             //initiate sources to be translated from
             SystemSource systemSource = new SystemSource();
