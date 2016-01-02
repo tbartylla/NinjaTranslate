@@ -97,6 +97,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "NotificationForm";
+            this.Leave += new System.EventHandler(this.NotificationForm_Leave);
             this.ResumeLayout(false);
             this.PerformLayout();
 

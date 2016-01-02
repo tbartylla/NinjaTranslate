@@ -37,10 +37,13 @@ namespace NinjaTranslate.Resources.Forms {
         public void ShowNotification(String text, int ms) {
             notificationHeader.Text = "NinjaTranslate"; // TODO change into a more useful header text.
             notificationContent.Text = text;
+            if (this.Visible)
+                expand();
             this.Show();
+            this.Activate();
             CloseFormAfterX(ms);
         }
-   
+
         /// <summary>
         /// closes the form after a specific time ms
         /// </summary>
@@ -51,7 +54,14 @@ namespace NinjaTranslate.Resources.Forms {
             timer.Start();
         }
 
-        void timer_Tick(object sender, EventArgs e) {
+        void timer_Tick(object sender, EventArgs e) {          
+            this.Hide();
+        }
+
+        private void NotificationForm_Leave(object sender, EventArgs e) {
+            Height = 143; // Height it has, when not expanded.
+            this.expandLabel.Text = "▲";
+            this.Visible = false;
             this.Hide();
         }
 
