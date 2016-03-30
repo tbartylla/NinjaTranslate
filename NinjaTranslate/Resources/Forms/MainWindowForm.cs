@@ -105,7 +105,7 @@ namespace NinjaTranslate
             // If the user clicked OK in the dialog then paste the path to its textbox.
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                 textBox_path_to_dict.Text = openFileDialog1.FileName;
-                Config.SetValue("path", textBox_path_to_dict.Text);
+                Config.SetSingleValue("path", textBox_path_to_dict.Text);
             }
         }
 
@@ -139,12 +139,12 @@ namespace NinjaTranslate
 
         // Notification Duration
         private void numeric_notification_ValueChanged(object sender, EventArgs e) {
-            Config.SetValue("notificationDuration", this.numeric_notification.Value.ToString());
+            Config.SetSingleValue("notificationDuration", this.numeric_notification.Value.ToString());
         }
 
         // Clipboard Acces Timer
         private void numeric_clipboardAccess_ValueChanged(object sender, EventArgs e) {
-            Config.SetValue("clipboardAccessTimer", this.numeric_clipboardAccess.Value.ToString());
+            Config.SetSingleValue("clipboardAccessTimer", this.numeric_clipboardAccess.Value.ToString());
         }
 
         // Settings

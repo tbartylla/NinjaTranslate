@@ -30,7 +30,7 @@ namespace Updater {
                         bool success = NinjaTranslateUpdater.LoadUpdate();
                         if (success) {
                             System.Console.WriteLine("Update gefunden und geladen");
-                            Config.SetValue("updateStep", "copy");
+                            Config.SetSingleValue("updateStep", "copy");
                             Config.Save();
                             return 1;
                         }
@@ -45,8 +45,8 @@ namespace Updater {
                     System.Threading.Thread.Sleep(500);
                     version = NinjaTranslateUpdater.CopyUpdateFiles();
                     NinjaTranslateUpdater.RestartProgram();
-                    Config.SetValue("version", version.ToString());
-                    Config.SetValue("updateStep", "update");
+                    Config.SetSingleValue("version", version.ToString());
+                    Config.SetSingleValue("updateStep", "update");
                     Config.Save();
                     break;
             }

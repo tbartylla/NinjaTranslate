@@ -13,6 +13,10 @@ namespace NinjaTranslate {
 	class PatriciaTrie {
 
 		protected Node root;
+        /*c# treats characters like "ß" in a global context like an "ss", leading to errors while building the tree and finding words.
+         * The comparison mode should be adjusted for every language, but I'm to lazy right now. A new TODO
+         * */
+        protected StringComparison stringComparison = StringComparison.Ordinal;
 
 		public PatriciaTrie() {	}
 	
@@ -48,20 +52,20 @@ namespace NinjaTranslate {
 		
 
 			// first case: exactly match with node
-			if (lowestMatchingNode.getQueryBottomUp().Equals(query)) {
+			if (lowestMatchingNode.getQueryBottomUp().Equals(query, this.stringComparison)) {
 				lowestMatchingNode.setIsFinished(true);
 				lowestMatchingNode.addTranslation(translation);
 				return true;
 			}
 		
 			//at this point "lowestMatchingNode" doesnt equal the query
-			String newQueryPart = query.Substring(lowestMatchingNode.getQueryBottomUp().Length, query.Length-lowestMatchingNode.getQueryBottomUp().Length);
+			String newQueryPart = query.Substring(lowestMatchingNode.getQueryBottomUp().Length, query.Length - lowestMatchingNode.getQueryBottomUp().Length);
 
 			//from this point: Query has a prefix that exists in the tree
 			bool matchingPrefix = false;
 
 			foreach (Node child in lowestMatchingNode.getChildren()) {
-				if (child.getSymbol().StartsWith(newQueryPart[0].ToString())) {
+				if (child.getSymbol().StartsWith(newQueryPart[0].ToString(), this.stringComparison)) {
 					childWithSamePrefix = child;
 					matchingPrefix = true;
 				}
@@ -85,7 +89,7 @@ namespace NinjaTranslate {
 			bool PrefixIsQuery = false; 
 			if (newQueryPart.Length > childWithSamePrefix.getSymbol().Length) {
 				upperBound = childWithSamePrefix.getSymbol().Length;		
-				if (childWithSamePrefix.getSymbol().StartsWith(newQueryPart))
+				if (childWithSamePrefix.getSymbol().StartsWith(newQueryPart, this.stringComparison))
 					PrefixIsQuery = true;
 			}
 			else {
@@ -98,7 +102,7 @@ namespace NinjaTranslate {
 					prefix = newQueryPart.Substring(0, i);
 					break;
 				}
-                //if at this point no prefix was created, we need a special case to copy all chars (previos case was for 
+                //if at this point no prefix was created, we need a special case to copy all chars (previous case was for 
                 //all but the last char, since we checked for differences)
                 if ((i + 1) == upperBound) 
                     prefix = newQueryPart.Substring(0, (i + 1));

@@ -22,6 +22,11 @@ namespace PatrixiaTrie {
         protected List<String> translation = new List<string>();
         protected bool queryFinished = false;
 
+        /*c# treats characters like "ß" in a global context like an "ss", leading to errors while building the tree and finding words.
+         * The comparison mode should be adjusted for every language, but I'm to lazy right now. A new TODO
+         * */
+        protected StringComparison stringComparison = StringComparison.Ordinal;
+
         public Node() { }
 
 
@@ -142,7 +147,7 @@ namespace PatrixiaTrie {
 
         public void removeChildBySymbol(String symbol) {
             List<Node> nodes = this.children;
-            nodes.RemoveAll(node => node.getSymbol().Equals(symbol));
+            nodes.RemoveAll(node => node.getSymbol().Equals(symbol, this.stringComparison));
         }
 
         public Node goToMatchingNode(String query, MatchingType type) {
@@ -152,7 +157,7 @@ namespace PatrixiaTrie {
                     return null;
                 }
                 // filter wrong nodes
-                if (!query.StartsWith(child.getSymbol())) {
+                if (!query.StartsWith(child.getSymbol(), this.stringComparison)) {
                     if (type == MatchingType.MATCH_EXACT || type == MatchingType.MATCH_INSERT)
                         return null;
                     else return child;

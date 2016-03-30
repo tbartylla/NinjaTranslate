@@ -10,7 +10,7 @@ namespace NinjaTranslate.Resources {
     class CustomNotification : INotificationService{
 
         private NotificationForm form;
-        int duration = 500;
+        int duration = 5000;
 
         public void SetForm(Form form) {
             this.form = (NotificationForm) form;

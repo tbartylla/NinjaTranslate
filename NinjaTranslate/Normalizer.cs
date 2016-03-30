@@ -18,7 +18,7 @@ namespace NinjaTranslate {
             if (normalizedInput == null || normalizedInput.Length == 0 || (normalizedInput.Length == 1 && input.Length > 1))
                 return null;
 
-            return normalizedInput;
+            return normalizedInput.ToLowerInvariant();
         }
 
         /// <summary>
