@@ -14,7 +14,6 @@ namespace NinjaTranslate.Resources.Forms {
     public partial class NotificationForm : Form {
 
         private const int EM_GETLINECOUNT = 0xba;
-        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
         [DllImport("user32", EntryPoint = "SendMessageA", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
         private static extern int SendMessage(int hwnd, int wMsg, int wParam, int lParam);
@@ -37,31 +36,18 @@ namespace NinjaTranslate.Resources.Forms {
         public void ShowNotification(String text, int ms) {
             notificationHeader.Text = "NinjaTranslate"; // TODO change into a more useful header text.
             notificationContent.Text = text;
-            if (this.Visible)
-                expand();
+            expandLabel.Text = "▲";
+            Height = 143; // Height it has, when not expanded. FIXME: probably should not be a magic number;
+            var screen = Screen.FromPoint(Location);
+            this.Location = new Point(screen.WorkingArea.Right - this.Width, screen.WorkingArea.Bottom - this.Height);
             this.Show();
             this.Activate();
-            CloseFormAfterX(ms);
-        }
-
-        /// <summary>
-        /// closes the form after a specific time ms
-        /// </summary>
-        /// <param name="ms">duration of how long the form will be visible shown on the users screen before getting hid</param>
-        private void CloseFormAfterX(int ms) {
-            timer.Interval = ms;
-            timer.Tick += new EventHandler(timer_Tick);
-            timer.Start();
-        }
-
-        void timer_Tick(object sender, EventArgs e) {          
-            this.Hide();
         }
 
         private void NotificationForm_Leave(object sender, EventArgs e) {
-            Height = 143; // Height it has, when not expanded.
-            this.expandLabel.Text = "▲";
-            this.Visible = false;
+            this.Hide();
+        }
+        private void NotificationForm_Deactivate(object sender, EventArgs e) {
             this.Hide();
         }
 

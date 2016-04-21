@@ -44,7 +44,7 @@
             this.notificationContent.Name = "notificationContent";
             this.notificationContent.ReadOnly = true;
             this.notificationContent.Size = new System.Drawing.Size(343, 110);
-            this.notificationContent.TabIndex = 0;
+            this.notificationContent.TabIndex = 2;
             this.notificationContent.TabStop = false;
             this.notificationContent.Text = "Lorem Ipsum dolor est emir";
             // 
@@ -76,7 +76,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(362, 143);
@@ -97,6 +97,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "NotificationForm";
+            this.Deactivate += new System.EventHandler(this.NotificationForm_Deactivate);
             this.Leave += new System.EventHandler(this.NotificationForm_Leave);
             this.ResumeLayout(false);
             this.PerformLayout();

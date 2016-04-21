@@ -21,9 +21,9 @@ namespace NinjaTranslate.Resources {
         }
 
         public void Notify(String message) {
-            if (this.form != null)
+            if (this.form != null) {
                 this.form.ShowNotification(message, duration);
-            else 
+            } else
                 throw new NotImplementedException();
         }
     }
