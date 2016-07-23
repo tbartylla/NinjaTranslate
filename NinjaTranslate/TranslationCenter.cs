@@ -41,10 +41,10 @@ namespace NinjaTranslate {
             if (treeNode != null) {
                 String translations = "";
                 foreach (string translation in treeNode.getTranslations()) {
-                    translations += " " + translation + ",";
+                    translations += "\t" + translation + Environment.NewLine;
                 }
 
-                return "word: '" + treeNode.getQueryBottomUp() + "' translation: '" + translations + "'";
+                return "word: " + Environment.NewLine + "\t" + treeNode.getQueryBottomUp() + Environment.NewLine + "translations: " + Environment.NewLine + translations;
             }
             return "Couldn't find the word '" + input + "' in the dictionary.";
         }        

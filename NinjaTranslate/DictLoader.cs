@@ -64,6 +64,10 @@ namespace NinjaTranslate {
                     sF.getProgressBar().Value = PatrixiaTrie.PatrixiaTrieFileMapper.deserializationProgress;
                     Thread.Sleep(100);
                 }
+
+                //reset status informations of FileMapper for next run
+                PatrixiaTrie.PatrixiaTrieFileMapper.ResetDeserializationProgress();
+
                 //hide SplashForm
                 if (sF != null)
                     sF.Close();

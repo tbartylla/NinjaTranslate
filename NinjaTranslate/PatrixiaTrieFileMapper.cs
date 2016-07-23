@@ -24,8 +24,8 @@ namespace PatrixiaTrie {
         public const int DEFAULT_NODE_ARRAY_SIZE_INIT = 40000000;
         public const int DEFAULT_NODE_ARRAY_SIZE_EXTEND = 100000;
 
-        private static int deserilizationTotal = 1;
-        private static int deserilizationDone = 0;
+        private static int deserializationTotal = 1;
+        private static int deserializationDone = 0;
 
         private PatrixiaTrieFileMapper() {
         }
@@ -66,7 +66,7 @@ namespace PatrixiaTrie {
             byte[] nodes = new byte[bytes.Length - structureLength - 4];
             Array.Copy(bytes, structureLength + 4, nodes, 0, bytes.Length - structureLength - 4);
 
-            deserilizationTotal = structureLength;
+            deserializationTotal = structureLength;
 
             Node root = new Node();
             int nodesOffset = GetNodeFromBits(nodes, ref root);
@@ -98,7 +98,7 @@ namespace PatrixiaTrie {
                     level++;
                 }
 
-                deserilizationDone = structureOffset;
+                deserializationDone = structureOffset;
             }
         }
 
@@ -308,10 +308,16 @@ namespace PatrixiaTrie {
 
         public static int deserializationProgress {
             get {
-                if (deserilizationTotal == 0)
+                if (deserializationTotal == 0)
                     return 100;
-                return (int)((deserilizationDone / (double)deserilizationTotal) * 100 + 0.5);
+                return (int)((deserializationDone / (double)deserializationTotal) * 100 + 0.5);
             }
+        }
+
+        public static void ResetDeserializationProgress() {
+            //set to zero for next deserialization
+            PatrixiaTrieFileMapper.deserializationDone = 0;
+            PatrixiaTrieFileMapper.deserializationTotal = 1;
         }
     }
 }

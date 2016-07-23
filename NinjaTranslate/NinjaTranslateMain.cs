@@ -85,7 +85,7 @@ namespace NinjaTranslate
                 System.Windows.Forms.MessageBox.Show("NinjaTranslate couldn't register the necessary hotkeys. It seems like another program uses them. Try to close them :)", "NinjaTranslate found an error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            //check if construction went well or if window is marked as disposed
+            //check if construction went well or if window is marked as indisposed
             if (!mainWindow.IsDisposed)
                 Application.Run(mainWindow);
         }

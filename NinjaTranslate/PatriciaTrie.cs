@@ -159,7 +159,7 @@ namespace NinjaTranslate {
 			return this.root.getSize();
 		}
 
-        //TODO fix for "he" - "hehehehe"
+        //TODO fix for "he" - "hehehehe" //08.06.16: immer noch?
 		public Node processQuery(String query) {
 			Node node = this.root.goToMatchingNode(query, Node.MatchingType.MATCH_EXACT);
 			if(node != null)

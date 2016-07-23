@@ -1,5 +1,16 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
 /NinjaTranslate/bin/Debug/updates
+/NinjaTranslate/bin/Debug/3
+/NinjaTranslate/bin/Debug/2
+/NinjaTranslate/bin/Debug/1
+/NinjaTranslate/bin
+/NinjaTranslate/obj
+/ntutil/obj
+/Updater/bin
+/Updater/obj
+NinjaTranslate/Resources/DEtoEN.txt
+NinjaTranslate/Resources/cbooombbdf-9320024555-eua986.txt
+NinjaTranslate/Resources/debug.txt
