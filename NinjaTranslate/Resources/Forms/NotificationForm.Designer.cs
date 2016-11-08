@@ -44,7 +44,7 @@
             this.notificationContent.Multiline = true;
             this.notificationContent.Name = "notificationContent";
             this.notificationContent.ReadOnly = true;
-            this.notificationContent.Size = new System.Drawing.Size(406, 233);
+            this.notificationContent.Size = new System.Drawing.Size(406, 226);
             this.notificationContent.TabIndex = 2;
             this.notificationContent.TabStop = false;
             this.notificationContent.Text = "Lorem Ipsum dolor est emir";

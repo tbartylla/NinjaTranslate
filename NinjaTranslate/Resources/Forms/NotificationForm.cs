@@ -33,13 +33,15 @@ namespace NinjaTranslate.Resources.Forms {
         /// </summary>
         /// <param name="text">content of the form</param>
         /// <param name="ms">duration of how long it will be visible shown on the users screen</param>
-        public void ShowNotification(String text, int ms) {
+        public void ShowNotification(String text, int ms, int width, int height) {
             notificationHeader.Text = "NinjaTranslate"; // TODO change into a more useful header text.
             notificationContent.Text = text;
             expandLabel.Text = "▲";
-            Height = 343; // Height it has, when not expanded. FIXME: probably should not be a magic number;
+            Height = height; // Height it has, when not expanded. FIXME: probably should not be a magic number;
             var screen = Screen.FromPoint(Location);
-            this.Location = new Point(screen.WorkingArea.Right - this.Width, screen.WorkingArea.Bottom - this.Height);
+            this.Location = new Point(screen.WorkingArea.Right - width, screen.WorkingArea.Bottom - this.Height);
+            this.Width = width;
+            this.notificationContent.Width = width;
             this.Show();
             this.Activate();
         }

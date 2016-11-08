@@ -45,6 +45,8 @@ namespace NinjaTranslate
 
             //initiate notification service
             CustomNotification notification = new CustomNotification();
+            notification.setHeight(Int32.Parse(Config.GetValue("windowHeight")));
+            notification.setWidth(Int32.Parse(Config.GetValue("windowWidth")));
             notification.SetNotificationDuration(Int32.Parse(Config.GetValue("notificationDuration")));
             notification.SetForm(notificationForm);
 
