@@ -74,5 +74,10 @@ namespace NinjaTranslate.Resources.Forms {
         private void expandLabel_Click(object sender, EventArgs e) {
             expand();
         }
+
+        //makes sure that the NotificationForm loses focus as soon, as the user presses any button.
+        private void NotificationForm_KeyPress(object sender, KeyPressEventArgs e) {
+            this.Hide();
+        }
     }
 }
