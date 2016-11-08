@@ -17,6 +17,8 @@ namespace NinjaTranslate
         public static Dictionary<String, String> rawFiles;
         public static String currentFileKey;
         public static String quickChangeKey;
+        public static Dictionary<String, PatriciaTrie> treesInMemory;
+        public static int maxTreesInMemory;
 
         [STAThread]
         static void Main() {
@@ -31,6 +33,11 @@ namespace NinjaTranslate
             NinjaTranslateMain.currentFileKey = Config.GetValue("currentKey");
             NinjaTranslateMain.rawFiles = Config.GetMultiValue("path");
             NinjaTranslateMain.quickChangeKey = Config.GetValue("quickchangeKey");
+            NinjaTranslateMain.treesInMemory = new Dictionary<String, PatriciaTrie>();
+            NinjaTranslateMain.maxTreesInMemory = Int32.Parse(Config.GetValue("maxTreesInMemory"));
+            if (NinjaTranslateMain.maxTreesInMemory < 1)
+                NinjaTranslateMain.maxTreesInMemory = 1;
+
 
             //load tree
             PatriciaTrie translationTree = LoadTranslationTree(currentFileKey);
@@ -105,6 +112,10 @@ namespace NinjaTranslate
         }
 
         static PatriciaTrie LoadTranslationTree(String currentKey) {
+            //check if tree is already stored in memory
+            if (NinjaTranslateMain.treesInMemory.ContainsKey(currentKey))
+                return NinjaTranslateMain.treesInMemory[currentKey];
+            
             //load windows
             SplashForm sf = new SplashForm();
 
@@ -117,6 +128,11 @@ namespace NinjaTranslate
             dc.SetFilter(normalizer); //TODO this has to be replaced when filters are implemented
 
             PatriciaTrie translationTree = dc.LoadDictData(NinjaTranslateMain.rawFiles[currentKey], Config.GetValue("serializedPath") + currentKey + ".tree");
+
+            //if we are allowed to store this tree in memory, even when we load another one -> store it
+            if (NinjaTranslateMain.treesInMemory.Count < NinjaTranslateMain.maxTreesInMemory)
+                NinjaTranslateMain.treesInMemory.Add(currentKey, translationTree);
+
             return translationTree;
         }
 

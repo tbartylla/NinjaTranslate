@@ -37,7 +37,7 @@ namespace NinjaTranslate.Resources.Forms {
             notificationHeader.Text = "NinjaTranslate"; // TODO change into a more useful header text.
             notificationContent.Text = text;
             expandLabel.Text = "▲";
-            Height = height; // Height it has, when not expanded. FIXME: probably should not be a magic number;
+            Height = height; 
             var screen = Screen.FromPoint(Location);
             this.Location = new Point(screen.WorkingArea.Right - width, screen.WorkingArea.Bottom - this.Height);
             this.Width = width;
