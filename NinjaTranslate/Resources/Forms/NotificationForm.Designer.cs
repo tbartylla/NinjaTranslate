@@ -39,7 +39,7 @@
             this.notificationContent.Enabled = false;
             this.notificationContent.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notificationContent.ForeColor = System.Drawing.Color.White;
-            this.notificationContent.Location = new System.Drawing.Point(8, 28);
+            this.notificationContent.Location = new System.Drawing.Point(10, 35);
             this.notificationContent.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.notificationContent.Multiline = true;
             this.notificationContent.Name = "notificationContent";
@@ -51,31 +51,31 @@
             // 
             // notificationHeader
             // 
-            this.notificationHeader.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.notificationHeader.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.notificationHeader.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.notificationHeader.Location = new System.Drawing.Point(20, 6);
+            this.notificationHeader.Location = new System.Drawing.Point(30, 8);
             this.notificationHeader.Margin = new System.Windows.Forms.Padding(8, 8, 2, 0);
             this.notificationHeader.Name = "notificationHeader";
-            this.notificationHeader.Size = new System.Drawing.Size(264, 19);
+            this.notificationHeader.Size = new System.Drawing.Size(264, 30);
             this.notificationHeader.TabIndex = 1;
             this.notificationHeader.Text = "label1";
             // 
             // expandLabel
             // 
             this.expandLabel.AutoSize = true;
-            this.expandLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expandLabel.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.expandLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.expandLabel.Location = new System.Drawing.Point(6, 8);
             this.expandLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.expandLabel.Name = "expandLabel";
-            this.expandLabel.Size = new System.Drawing.Size(19, 17);
+            this.expandLabel.Size = new System.Drawing.Size(25, 23);
             this.expandLabel.TabIndex = 2;
             this.expandLabel.Text = "▲";
             this.expandLabel.Click += new System.EventHandler(this.expandLabel_Click);
             // 
             // NotificationForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Black;
@@ -89,7 +89,7 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "NotificationForm";
