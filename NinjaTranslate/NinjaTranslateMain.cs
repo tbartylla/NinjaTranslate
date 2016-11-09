@@ -97,6 +97,10 @@ namespace NinjaTranslate
             //check if construction went well or if window is marked as indisposed
             if (!mainWindow.IsDisposed)
                 Application.Run(mainWindow);
+
+            GC.KeepAlive(markerHook);
+            GC.KeepAlive(dictionaryHook);
+            GC.KeepAlive(inputHook);
         }
 
         static void ChangeDictionary(INotificationService notification) {

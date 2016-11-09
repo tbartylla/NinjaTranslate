@@ -14,6 +14,7 @@ namespace NinjaTranslate.Resources.Forms {
     public partial class NotificationForm : Form {
 
         private const int EM_GETLINECOUNT = 0xba;
+        private bool isExtended = false;
 
         [DllImport("user32", EntryPoint = "SendMessageA", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
         private static extern int SendMessage(int hwnd, int wMsg, int wParam, int lParam);
@@ -77,7 +78,16 @@ namespace NinjaTranslate.Resources.Forms {
 
         //makes sure that the NotificationForm loses focus as soon, as the user presses any button.
         private void NotificationForm_KeyPress(object sender, KeyPressEventArgs e) {
-            this.Hide();
+            var numberOfLines = SendMessage(notificationContent.Handle.ToInt32(), EM_GETLINECOUNT, 0, 0);
+            var heightCompleteTranslationText = (notificationContent.Font.Height) * numberOfLines + 10;
+            if (e.KeyChar == (char)Keys.Enter && this.Height < heightCompleteTranslationText && !this.isExtended) {
+                this.isExtended = true;
+                this.expand();
+            }
+            else {
+                this.isExtended = false;
+                this.Hide();
+            }
         }
     }
 }
