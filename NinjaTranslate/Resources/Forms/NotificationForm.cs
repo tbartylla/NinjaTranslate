@@ -16,6 +16,9 @@ namespace NinjaTranslate.Resources.Forms {
         private const int EM_GETLINECOUNT = 0xba;
         private bool isExtended = false;
 
+        private int numberOfLines = 0;
+        private int heightCompleteTranslationText = 0;
+
         [DllImport("user32", EntryPoint = "SendMessageA", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
         private static extern int SendMessage(int hwnd, int wMsg, int wParam, int lParam);
 
@@ -37,8 +40,15 @@ namespace NinjaTranslate.Resources.Forms {
         public void ShowNotification(String text, int ms, int width, int height) {
             notificationHeader.Text = "NinjaTranslate"; // TODO change into a more useful header text.
             notificationContent.Text = text;
-            expandLabel.Text = "▲";
-            Height = height; 
+            this.Height = height;
+            this.numberOfLines = SendMessage(notificationContent.Handle.ToInt32(), EM_GETLINECOUNT, 0, 0);
+            this.heightCompleteTranslationText = (notificationContent.Font.Height) * numberOfLines + 10;
+
+            if (this.heightCompleteTranslationText > this.Height)
+                expandLabel.Text = "▲";
+            else
+                expandLabel.Text = "▼";
+
             var screen = Screen.FromPoint(Location);
             this.Location = new Point(screen.WorkingArea.Right - width, screen.WorkingArea.Bottom - this.Height);
             this.Width = width;
@@ -58,13 +68,13 @@ namespace NinjaTranslate.Resources.Forms {
         /// expands the notificationForm in height, until the whole translation content fits in the forms textbox.
         /// </summary>
         public void expand() {
-            var numberOfLines = SendMessage(notificationContent.Handle.ToInt32(), EM_GETLINECOUNT, 0, 0);
-            var heightCompleteTranslationText = (notificationContent.Font.Height) * numberOfLines + 10;
             var screen = Screen.FromPoint(Location);
             // expand animation
             this.expandLabel.Text = "▼";
-            while (Height < heightCompleteTranslationText) {
-                Height += 10;
+            //maximum allowed siz
+            Size s = SystemInformation.MaxWindowTrackSize;
+            while (this.Height < heightCompleteTranslationText && this.Height < s.Height) {
+                this.Height += 10;
                 this.Location = new Point(screen.WorkingArea.Right - this.Width, screen.WorkingArea.Bottom - this.Height); 
                 this.Update(); // repaint the form 
                 Thread.Sleep(20);

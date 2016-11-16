@@ -45,6 +45,9 @@ namespace NinjaTranslate {
             PatriciaTrie pTrie = new PatriciaTrie();
             //serialized file found, use this one
             if (File.Exists(serializedFile)) {
+                //reset status informations of FileMapper for next run
+                PatrixiaTrie.PatrixiaTrieFileMapper.ResetDeserializationProgress();
+
                 //load via backgroundWorker, report progress to splashform
                 BackgroundWorker bw = new BackgroundWorker();
                 bw.WorkerReportsProgress = true;
@@ -64,9 +67,6 @@ namespace NinjaTranslate {
                     sF.getProgressBar().Value = PatrixiaTrie.PatrixiaTrieFileMapper.deserializationProgress;
                     Thread.Sleep(100);
                 }
-
-                //reset status informations of FileMapper for next run
-                PatrixiaTrie.PatrixiaTrieFileMapper.ResetDeserializationProgress();
 
                 //hide SplashForm
                 if (sF != null)

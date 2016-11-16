@@ -76,8 +76,8 @@ namespace NinjaTranslate
         private void Form1_SizeChanged(object sender, EventArgs e) {
             if (this.WindowState == FormWindowState.Minimized) {
                 this.notifyIcon1.Visible = true;
-                notifyIcon1.BalloonTipText = "NinjaTranslate has been minimized";
-                notifyIcon1.ShowBalloonTip(1000);
+                //notifyIcon1.BalloonTipText = "NinjaTranslate has been minimized";
+                //notifyIcon1.ShowBalloonTip(1000);
                 this.ShowInTaskbar = false;
                 this.Visible = false;
             }
