@@ -23,7 +23,8 @@ namespace NinjaTranslate
         [STAThread]
         static void Main() {
             //Initiate update process
-            NinjaTranslateMain.Update(Config.GetValue("version"), Config.GetValue("updateStep"));
+            //deactivated for now, though it does work!
+            //NinjaTranslateMain.Update(Config.GetValue("version"), Config.GetValue("updateStep"));
 
             //load windows
             MainWindow mainWindow = new MainWindow();

@@ -60,6 +60,12 @@
     <Compile Include="Interfaces\INotificationService.cs" />
     <Compile Include="Interfaces\ITranslationService.cs" />
     <Compile Include="CustomNotification.cs" />
+    <Compile Include="Resources\Forms\AddDictForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Resources\Forms\AddDictForm.Designer.cs">
+      <DependentUpon>AddDictForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Forms\HistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,9 @@
     <Compile Include="SystemSource.cs" />
     <Compile Include="TranslationCenter.cs" />
     <Compile Include="Interfaces\ITranslationSource.cs" />
+    <EmbeddedResource Include="Resources\Forms\AddDictForm.resx">
+      <DependentUpon>AddDictForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Forms\HistoryForm.resx">
       <DependentUpon>HistoryForm.cs</DependentUpon>
     </EmbeddedResource>
