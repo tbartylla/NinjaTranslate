@@ -89,6 +89,14 @@ namespace ntutil
             Config.confValues[key].singleVal = value;
         }
 
+        public static void SetMultiValue(String key, Dictionary<string, string> value) {
+            //First check that all old values have been loaded, they would be lost otherwise when saving
+            if (!Config.valuesLoaded)
+                Config.Load();
+
+            Config.confValues[key].multiValues = value;
+        }
+
         /**
          * TODO noch nicht getestet
          * */

@@ -23,8 +23,10 @@ namespace NinjaTranslate
         
         // HistoryForm iH = new HistoryForm();
         NotificationForm notificationForm = new NotificationForm();
-        // AppearanceForm appearanceForm = new AppearanceForm();
-        
+        Dictionary<string, string> dictionaries;
+        string currentKeyConfig = "";
+        string quickChangeKeyConfig = "";
+
         public MainWindow() {
             InitializeComponent();
 
@@ -35,6 +37,19 @@ namespace NinjaTranslate
                 Int32.Parse(Config.GetValue("windowWidth")),0,0,0});
             this.numeric_window_height.Value = new decimal(new int[] {
                 Int32.Parse(Config.GetValue("windowHeight")),0,0,0});
+
+            this.dictionaries = Config.GetMultiValue("path");
+            this.comboBox_dict.Items.Add("please select");
+            this.comboBox_dict.SelectedIndex = 0;
+            foreach (KeyValuePair<string, string> dict in dictionaries) {
+                this.comboBox_dict.Items.Add(dict.Key);
+            }
+
+            if (Int32.Parse(Config.GetValue("maxTreesInMemory")) > 1)
+                this.quickChangeInMemory.Checked = true;
+
+            this.quickChangeKeyConfig = Config.GetValue("quickchangeKey");
+            this.currentKeyConfig = Config.GetValue("currentKey");
 
             MinimizeForm();
         }
@@ -107,19 +122,18 @@ namespace NinjaTranslate
             // If the user clicked OK in the dialog then paste the path to its textbox.
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                 textBox_path_to_dict.Text = openFileDialog1.FileName;
-                Config.SetSingleValue("path", textBox_path_to_dict.Text);
             }
         }
 
         // Add Dictionary
         private void Btn_add_dict_Click(object sender, EventArgs e) {
-            // TODO change stuff here 
-            Btn_browse_dict_Click(sender, e);
+            AddDictForm adf = new AddDictForm(this);
+            adf.ShowDialog();
         }
 
         // Restore Default Shortkeys
         private void Btn_restore_shortkeys_Click(object sender, EventArgs e) {
-            //TODO Restore Default Shortkeys
+            
         }
 
         // Cancel
@@ -129,20 +143,51 @@ namespace NinjaTranslate
 
         // Save
         private void Btn_save_Click(object sender, EventArgs e) {
+            Config.SetSingleValue("windowWidth", this.numeric_window_width.Value.ToString());
+            Config.SetSingleValue("windowHeight", this.numeric_window_height.Value.ToString());
+            Config.SetSingleValue("clipboardAccessTimer", this.numeric_clipboardAccess.Value.ToString());
+            Config.SetMultiValue("path", this.dictionaries);
+            Config.SetSingleValue("currentKey", this.currentKeyConfig);
+            Config.SetSingleValue("quickchangeKey", this.quickChangeKeyConfig);
+
+            if (this.quickChangeInMemory.Checked)
+                Config.SetSingleValue("maxTreesInMemory", "2");
+            else
+                Config.SetSingleValue("maxTreesInMemory", "1");
             Config.Save();
             MinimizeForm();
         }
 
         // Select Dictionary
         private void ComboBox_dict_SelectedIndexChanged(object sender, EventArgs e) {
-            textBox_path_to_dict.ReadOnly = false;
-            btn_browse_dict.Enabled = true;
-        }
+            if (this.comboBox_dict.SelectedIndex > 0) {
+                this.keyTextBox.Text = this.comboBox_dict.SelectedItem.ToString();
+                this.textBox_path_to_dict.Text = this.dictionaries[this.comboBox_dict.SelectedItem.ToString()];
 
+                this.deleteButton.Enabled = true;
+                this.btn_browse_dict.Enabled = true;
 
-        // Clipboard Acces Timer
-        private void numeric_clipboardAccess_ValueChanged(object sender, EventArgs e) {
-            Config.SetSingleValue("clipboardAccessTimer", this.numeric_clipboardAccess.Value.ToString());
+                this.currentKey.Enabled = true;
+                if (this.currentKeyConfig == this.comboBox_dict.SelectedItem.ToString())
+                    this.currentKey.Checked = true;
+                else
+                    this.currentKey.Checked = false;
+
+                this.quickChangeKey.Enabled = true;
+                if (this.quickChangeKeyConfig == this.comboBox_dict.SelectedItem.ToString())
+                    this.quickChangeKey.Checked = true;
+                else
+                    this.quickChangeKey.Checked = false;
+
+            } 
+            else {
+                this.keyTextBox.Enabled = false;
+                this.textBox_path_to_dict.Enabled = false;
+                this.deleteButton.Enabled = false;
+                this.btn_browse_dict.Enabled = false;
+                this.currentKey.Enabled = false;
+                this.quickChangeKey.Enabled = false;
+            }
         }
 
         // Settings
@@ -150,22 +195,37 @@ namespace NinjaTranslate
             notifyIcon1_Click(sender, e);
         }
 
-        // Donate
-        private void menuItem2_Click(object sender, EventArgs e) {
-            // TODO Donate
-        }
-
         // Exit NinjaTranslate
         private void menuItem3_Click(object sender, EventArgs e) {
             System.Windows.Forms.Application.Exit();
         }
 
-        private void numeric_window_height_ValueChanged(object sender, EventArgs e) {
-            Config.SetSingleValue("notificationDuration", this.numeric_window_height.Value.ToString());
+        private void currentKey_CheckedChanged(object sender, EventArgs e) {
+            if (this.currentKey.Checked)
+                this.currentKeyConfig = this.comboBox_dict.SelectedItem.ToString();
         }
 
-        private void numeric_window_width_ValueChanged(object sender, EventArgs e) {
-            Config.SetSingleValue("notificationDuration", this.numeric_window_width.Value.ToString());
+        private void quickChangeKey_CheckedChanged(object sender, EventArgs e) {
+            if (this.quickChangeKey.Checked)
+                this.quickChangeKeyConfig = this.comboBox_dict.SelectedItem.ToString();
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e) {
+            this.dictionaries[this.comboBox_dict.SelectedItem.ToString()] = null;
+            this.comboBox_dict.Items.Remove(this.comboBox_dict.SelectedItem);
+            //TODO created tree should be deleted when this happens
+        }
+
+        private void infoButton_Click(object sender, EventArgs e) {
+            System.Windows.MessageBox.Show("NinjaTranslate offers you to handle multiple dictionaries at once. All you need is a file containing words, followed by a tab and the translation(s). You can specify this file here using the Add-button. \n \n You can also select which dictionary should be loaded when NinjaTranslate is started, and which dictionary should be accessible by using the quick-change button.", "NinjaTranslate");
+        }
+
+        public bool addDictionary(string key, string path) {
+            if (this.dictionaries.ContainsKey(key))
+                return false;
+            this.dictionaries.Add(key, path);
+            this.comboBox_dict.SelectedIndex = this.comboBox_dict.Items.Add(key);
+            return true;
         }
     }
 }
