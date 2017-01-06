@@ -29,10 +29,12 @@ namespace NinjaTranslate
             InitializeComponent();
 
             //sets the numeric textfields to the values saved in the config.ini
-            this.numeric_notification.Value = new decimal(new int[] {
-                Int32.Parse(Config.GetValue("notificationDuration")),0,0,0});
             this.numeric_clipboardAccess.Value = new decimal(new int[] {
                 Int32.Parse(Config.GetValue("clipboardAccessTimer")),0,0,0});
+            this.numeric_window_width.Value = new decimal(new int[] {
+                Int32.Parse(Config.GetValue("windowWidth")),0,0,0});
+            this.numeric_window_height.Value = new decimal(new int[] {
+                Int32.Parse(Config.GetValue("windowHeight")),0,0,0});
 
             MinimizeForm();
         }
@@ -137,10 +139,6 @@ namespace NinjaTranslate
             btn_browse_dict.Enabled = true;
         }
 
-        // Notification Duration
-        private void numeric_notification_ValueChanged(object sender, EventArgs e) {
-            Config.SetSingleValue("notificationDuration", this.numeric_notification.Value.ToString());
-        }
 
         // Clipboard Acces Timer
         private void numeric_clipboardAccess_ValueChanged(object sender, EventArgs e) {
@@ -160,6 +158,14 @@ namespace NinjaTranslate
         // Exit NinjaTranslate
         private void menuItem3_Click(object sender, EventArgs e) {
             System.Windows.Forms.Application.Exit();
+        }
+
+        private void numeric_window_height_ValueChanged(object sender, EventArgs e) {
+            Config.SetSingleValue("notificationDuration", this.numeric_window_height.Value.ToString());
+        }
+
+        private void numeric_window_width_ValueChanged(object sender, EventArgs e) {
+            Config.SetSingleValue("notificationDuration", this.numeric_window_width.Value.ToString());
         }
     }
 }
