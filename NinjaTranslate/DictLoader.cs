@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Threading;
 using System.Windows.Threading;
+using NinjaTranslate.Resources.Forms;
 
 namespace NinjaTranslate {
     class DictLoader {
@@ -111,6 +112,10 @@ namespace NinjaTranslate {
                     byte[] serialization = PatrixiaTrie.PatrixiaTrieFileMapper.Serialize(pTrie.getRootNode());
                     SaveData(serializedFile, serialization);
                 }
+            } 
+            // when no path for a dictionary file is stated.
+            else {
+                Console.Write("No path for dictionary file - DictLoader");
             }
 
             return pTrie;

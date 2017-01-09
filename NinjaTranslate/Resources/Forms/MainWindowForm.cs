@@ -141,6 +141,17 @@ namespace NinjaTranslate
             MinimizeForm();
         }
 
+        // Save Dictionary
+        // Only use this method for init purposes
+        public void SaveInit() {
+            Config.SetMultiValue("path", this.dictionaries);
+            Config.SetSingleValue("currentKey", this.keyTextBox.Text);
+            if(this.keyTextBox.Text == "Key") // "Key" 
+                Config.SetSingleValue("currentKey", "");
+            Config.SetSingleValue("quickchangeKey", this.quickChangeKeyConfig);
+            Config.Save();
+        }
+
         // Save
         private void Btn_save_Click(object sender, EventArgs e) {
             Config.SetSingleValue("windowWidth", this.numeric_window_width.Value.ToString());

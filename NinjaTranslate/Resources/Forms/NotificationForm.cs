@@ -36,8 +36,7 @@ namespace NinjaTranslate.Resources.Forms {
         /// shows the NotificationForm 
         /// </summary>
         /// <param name="text">content of the form</param>
-        /// <param name="ms">duration of how long it will be visible shown on the users screen</param>
-        public void ShowNotification(String text, int ms, int width, int height) {
+        public void ShowNotification(String text, int width, int height) {
             notificationHeader.Text = "NinjaTranslate"; // TODO change into a more useful header text.
             notificationContent.Text = text;
             this.Height = height;

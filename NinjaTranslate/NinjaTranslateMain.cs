@@ -31,14 +31,7 @@ namespace NinjaTranslate
             NotificationForm notificationForm = new NotificationForm();
 
             //load config values
-            NinjaTranslateMain.currentFileKey = Config.GetValue("currentKey");
-            NinjaTranslateMain.rawFiles = Config.GetMultiValue("path");
-            NinjaTranslateMain.quickChangeKey = Config.GetValue("quickchangeKey");
-            NinjaTranslateMain.treesInMemory = new Dictionary<String, PatriciaTrie>();
-            NinjaTranslateMain.maxTreesInMemory = Int32.Parse(Config.GetValue("maxTreesInMemory"));
-            if (NinjaTranslateMain.maxTreesInMemory < 1)
-                NinjaTranslateMain.maxTreesInMemory = 1;
-
+            LoadConfigFiles(mainWindow);
 
             //load tree
             PatriciaTrie translationTree = LoadTranslationTree(currentFileKey);
@@ -55,7 +48,6 @@ namespace NinjaTranslate
             CustomNotification notification = new CustomNotification();
             notification.setHeight(Int32.Parse(Config.GetValue("windowHeight")));
             notification.setWidth(Int32.Parse(Config.GetValue("windowWidth")));
-            notification.SetNotificationDuration(Int32.Parse(Config.GetValue("notificationDuration")));
             notification.SetForm(notificationForm);
 
             //initiate sources to be translated from
@@ -102,6 +94,24 @@ namespace NinjaTranslate
             GC.KeepAlive(markerHook);
             GC.KeepAlive(dictionaryHook);
             GC.KeepAlive(inputHook);
+        }
+
+        static void LoadConfigFiles(MainWindow mainWindow) {
+            NinjaTranslateMain.currentFileKey = Config.GetValue("currentKey");
+            NinjaTranslateMain.rawFiles = Config.GetMultiValue("path");
+            NinjaTranslateMain.quickChangeKey = Config.GetValue("quickchangeKey");
+            NinjaTranslateMain.treesInMemory = new Dictionary<String, PatriciaTrie>();
+            NinjaTranslateMain.maxTreesInMemory = Int32.Parse(Config.GetValue("maxTreesInMemory"));
+            if (NinjaTranslateMain.maxTreesInMemory < 1)
+                NinjaTranslateMain.maxTreesInMemory = 1;
+            if (currentFileKey == "") { // happens when no dictionary is stated in the config file
+                AddDictForm adf = new AddDictForm(mainWindow);
+                MessageBox.Show("It seems that you started NinjaTranslate for the first time. To use this program you have to download the translations data from dict.cc."
+                + " You can do that on http://www1.dict.cc/translation_file_request.php?l=e . Please state the path of this file in the next dialog.");
+                adf.ShowDialog();
+                mainWindow.SaveInit();
+                LoadConfigFiles(mainWindow);
+            }
         }
 
         static void ChangeDictionary(INotificationService notification) {
