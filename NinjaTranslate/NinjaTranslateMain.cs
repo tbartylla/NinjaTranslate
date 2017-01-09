@@ -104,13 +104,30 @@ namespace NinjaTranslate
             NinjaTranslateMain.maxTreesInMemory = Int32.Parse(Config.GetValue("maxTreesInMemory"));
             if (NinjaTranslateMain.maxTreesInMemory < 1)
                 NinjaTranslateMain.maxTreesInMemory = 1;
+
             if (currentFileKey == "") { // happens when no dictionary is stated in the config file
                 AddDictForm adf = new AddDictForm(mainWindow);
                 MessageBox.Show("It seems that you started NinjaTranslate for the first time. To use this program you have to download the translations data from dict.cc."
-                + " You can do that on http://www1.dict.cc/translation_file_request.php?l=e . Please state the path of this file in the next dialog.");
+                + " You can do that for example on http://www1.dict.cc/translation_file_request.php?l=e . Please state the path of this file in the next dialog.");
+                
+                adf.addButton.Click += delegate (object sender1, EventArgs e1) {
+                    AddDictForm adForm = (AddDictForm)((Button)sender1).Parent;
+                    if (adForm.formCheck()) { 
+                        adForm.stopCancelingEvent();
+                        adForm.insertDict();
+                        mainWindow.SaveInit();
+                        adForm.Close();
+                    }
+                };
+
+                adf.FormClosing += delegate (object sender1, FormClosingEventArgs e1) {
+                    if (((AddDictForm)sender1).canceled)
+                        Environment.Exit(0);
+                };
+
                 adf.ShowDialog();
-                mainWindow.SaveInit();
-                LoadConfigFiles(mainWindow);
+
+                NinjaTranslateMain.currentFileKey = Config.GetValue("currentKey");
             }
         }
 
@@ -142,7 +159,17 @@ namespace NinjaTranslate
             dc.SetSplashForm(sf);
             dc.SetFilter(normalizer); //TODO this has to be replaced when filters are implemented
 
+            if (!NinjaTranslateMain.rawFiles.ContainsKey(currentKey)) {
+                MessageBox.Show("Quick change key contains an unknown dictionary name. No dictionary was loaded!");
+                return null;
+            }
+
             PatriciaTrie translationTree = dc.LoadDictData(NinjaTranslateMain.rawFiles[currentKey], Config.GetValue("serializedPath") + currentKey + ".tree");
+
+            if (translationTree == null) {
+                MessageBox.Show("Could not find a dictionary with the specified name. No tree was loaded.");
+                return null;
+            }
 
             //if we are allowed to store this tree in memory, even when we load another one -> store it
             if (NinjaTranslateMain.treesInMemory.Count < NinjaTranslateMain.maxTreesInMemory)

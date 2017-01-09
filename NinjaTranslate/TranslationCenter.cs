@@ -36,6 +36,9 @@ namespace NinjaTranslate {
         public String Translate(string input) {
             if (input == null)
                 return "no processible content";
+            if (this.translationTree == null)
+                return "No tree was loaded, no translation possible!";
+
             input = this.ApplyFilter(input);
             Node treeNode = this.translationTree.processQuery(input);
             if (treeNode != null) {

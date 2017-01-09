@@ -12,6 +12,8 @@ namespace NinjaTranslate.Resources.Forms {
     public partial class AddDictForm : Form {
         MainWindow mwf;
 
+        public bool canceled = true;
+
         public AddDictForm(MainWindow mwf) {
             this.mwf = mwf;
             InitializeComponent();
@@ -29,11 +31,24 @@ namespace NinjaTranslate.Resources.Forms {
             }
         }
 
-        private void addButton_Click(object sender, EventArgs e) {
+        public void insertDict() {
             if (mwf.addDictionary(this.keyTextBox.Text, this.pathTextBox.Text))
                 this.Close();
             else
                 System.Windows.MessageBox.Show("This name seems to be not available.", "Error");
+        }
+
+        public void stopCancelingEvent() {
+            this.canceled = false;
+        }
+
+        public bool formCheck() {
+            if (this.pathTextBox.Text == "" || this.keyTextBox.Text.Trim() == "") {
+                MessageBox.Show("Please specify a dictionary file and a name for the dictionary.");
+                return false;
+            }
+
+            return true;
         }
     }
 }

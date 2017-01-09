@@ -128,6 +128,14 @@ namespace NinjaTranslate
         // Add Dictionary
         private void Btn_add_dict_Click(object sender, EventArgs e) {
             AddDictForm adf = new AddDictForm(this);
+            adf.cancelButton.Click += delegate (object sender1, EventArgs e1)
+            { adf.Close(); };
+
+            adf.addButton.Click += delegate (object sender1, EventArgs e1) {
+                if (((AddDictForm)((Button)sender1).Parent).formCheck())
+                    ((AddDictForm)((Button)sender1).Parent).insertDict();
+            };
+            
             adf.ShowDialog();
         }
 
@@ -145,9 +153,10 @@ namespace NinjaTranslate
         // Only use this method for init purposes
         public void SaveInit() {
             Config.SetMultiValue("path", this.dictionaries);
-            Config.SetSingleValue("currentKey", this.keyTextBox.Text);
-            if(this.keyTextBox.Text == "Key") // "Key" 
-                Config.SetSingleValue("currentKey", "");
+            //Assuming there is no currentKey set, that is why we call this at all
+            string key = this.dictionaries.Keys.First();
+            Config.SetSingleValue("currentKey", key);
+            this.currentKeyConfig = key;
             Config.SetSingleValue("quickchangeKey", this.quickChangeKeyConfig);
             Config.Save();
         }
