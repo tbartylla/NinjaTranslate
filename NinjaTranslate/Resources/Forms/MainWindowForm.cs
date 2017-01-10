@@ -231,8 +231,11 @@ namespace NinjaTranslate
         }
 
         private void deleteButton_Click(object sender, EventArgs e) {
-            this.dictionaries[this.comboBox_dict.SelectedItem.ToString()] = null;
+            this.dictionaries.Remove(this.comboBox_dict.SelectedItem.ToString());
             this.comboBox_dict.Items.Remove(this.comboBox_dict.SelectedItem);
+            this.comboBox_dict.SelectedIndex = 0;
+            this.keyTextBox.Text = "";
+            this.textBox_path_to_dict.Text = "";
             //TODO created tree should be deleted when this happens
         }
 
