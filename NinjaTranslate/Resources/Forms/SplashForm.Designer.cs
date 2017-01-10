@@ -35,6 +35,7 @@
             // 
             // splashForm
             // 
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::NinjaTranslate.Properties.Resources.splash_screen;
@@ -49,7 +50,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "splashForm";
             this.ResumeLayout(false);
-
+            
         }
 
         #endregion
