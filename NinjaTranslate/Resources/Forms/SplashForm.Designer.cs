@@ -28,26 +28,29 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(59, 224);
+            this.progressBar1.Location = new System.Drawing.Point(79, 276);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(384, 15);
+            this.progressBar1.Size = new System.Drawing.Size(512, 18);
             this.progressBar1.TabIndex = 0;
             // 
-            // splashForm
+            // SplashForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::NinjaTranslate.Properties.Resources.splash_screen;
-            this.ClientSize = new System.Drawing.Size(500, 300);
+            this.ClientSize = new System.Drawing.Size(667, 369);
             this.Controls.Add(this.progressBar1);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximumSize = new System.Drawing.Size(500, 300);
-            this.MinimumSize = new System.Drawing.Size(500, 300);
-            this.Name = "splashForm";
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaximumSize = new System.Drawing.Size(667, 369);
+            this.MinimumSize = new System.Drawing.Size(667, 369);
+            this.Name = "SplashForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "splashForm";
+            this.Text = "splashScreen";
             this.ResumeLayout(false);
 
         }
