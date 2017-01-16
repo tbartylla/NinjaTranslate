@@ -17,6 +17,7 @@ namespace NinjaTranslate
         public static Dictionary<String, String> rawFiles;
         public static String currentFileKey;
         public static String quickChangeKey;
+        public static String nextKeyToUse = "quickchangeKey";
         public static Dictionary<String, PatriciaTrie> treesInMemory;
         public static int maxTreesInMemory;
 
@@ -25,6 +26,8 @@ namespace NinjaTranslate
             //Initiate update process
             //deactivated for now, though it does work!
             //NinjaTranslateMain.Update(Config.GetValue("version"), Config.GetValue("updateStep"));
+
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
 
             //load windows
             MainWindow mainWindow = new MainWindow();
@@ -79,6 +82,10 @@ namespace NinjaTranslate
                 inputHook.RegisterHotKey((ModifierKeys)2 | (ModifierKeys)1, Keys.B);
                 //register the control + alt + V combination to trigger a switch of the chosen dictionary
                 dictionaryHook.KeyPressed += new EventHandler<KeyPressedEventArgs>(delegate(object sender, KeyPressedEventArgs e) {
+                    //reload in case user has added a dict
+                    NinjaTranslateMain.rawFiles = Config.GetMultiValue("path");
+                    NinjaTranslateMain.quickChangeKey = Config.GetValue("quickchangeKey");
+                    NinjaTranslateMain.currentFileKey = Config.GetValue("currentKey");
                     NinjaTranslateMain.ChangeDictionary(notification);
                 });
                 dictionaryHook.RegisterHotKey((ModifierKeys)2 | (ModifierKeys)1, Keys.V);
@@ -132,15 +139,22 @@ namespace NinjaTranslate
         }
 
         static void ChangeDictionary(INotificationService notification) {
-            PatriciaTrie translationTrie = NinjaTranslateMain.LoadTranslationTree(NinjaTranslateMain.quickChangeKey);
+            PatriciaTrie translationTrie;
+            string currentKey = "";
+            if (NinjaTranslateMain.nextKeyToUse.Equals("quickchangeKey")) { 
+                translationTrie = NinjaTranslateMain.LoadTranslationTree(NinjaTranslateMain.quickChangeKey);
+                currentKey = NinjaTranslateMain.quickChangeKey;
+                NinjaTranslateMain.nextKeyToUse = "currentKey";
+            }
+            else {
+                translationTrie = NinjaTranslateMain.LoadTranslationTree(NinjaTranslateMain.currentFileKey);
+                NinjaTranslateMain.nextKeyToUse = "quickchangeKey";
+                currentKey = NinjaTranslateMain.currentFileKey;
+            }
             NinjaTranslateMain.translationCenter.SetTranslationTree(translationTrie);
-
-            String temp = NinjaTranslateMain.currentFileKey;
-            NinjaTranslateMain.currentFileKey = NinjaTranslateMain.quickChangeKey;
-            NinjaTranslateMain.quickChangeKey = temp;
-
+            
             if (notification != null)
-                notification.Notify("New Dictionary: " + NinjaTranslateMain.currentFileKey);
+                notification.Notify("New Dictionary: " + currentKey);
         }
 
         static PatriciaTrie LoadTranslationTree(String currentKey) {

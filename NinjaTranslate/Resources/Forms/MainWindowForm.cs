@@ -26,10 +26,25 @@ namespace NinjaTranslate
         Dictionary<string, string> dictionaries;
         string currentKeyConfig = "";
         string quickChangeKeyConfig = "";
+        bool realClose = false;
 
         public MainWindow() {
+            //this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             InitializeComponent();
 
+            this.init();
+        }
+
+        protected override CreateParams CreateParams {
+            get {
+                CreateParams cp = base.CreateParams;
+                // turn on WS_EX_TOOLWINDOW style bit
+                cp.ExStyle |= 0x80;
+                return cp;
+            }
+        }
+
+        private void init() {
             //sets the numeric textfields to the values saved in the config.ini
             this.numeric_clipboardAccess.Value = new decimal(new int[] {
                 Int32.Parse(Config.GetValue("clipboardAccessTimer")),0,0,0});
@@ -39,6 +54,7 @@ namespace NinjaTranslate
                 Int32.Parse(Config.GetValue("windowHeight")),0,0,0});
 
             this.dictionaries = Config.GetMultiValue("path");
+            this.comboBox_dict.Items.Clear();
             this.comboBox_dict.Items.Add("please select");
             this.comboBox_dict.SelectedIndex = 0;
             foreach (KeyValuePair<string, string> dict in dictionaries) {
@@ -60,9 +76,18 @@ namespace NinjaTranslate
         }
 
         private void MinimizeForm() {
-            this.ShowInTaskbar = false;
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
-            this.Visible = false;
+            this.Hide();
+            //this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            //this.Visible = false;
+            this.notifyIcon1.Visible = true;
+            //this.ShowInTaskbar = false;
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e) {
+            if (!this.realClose) { 
+                notifyIcon1.Visible = true;
+                base.OnFormClosing(e);
+            }
         }
 
         public void ShowNotification(String text, int ms) {
@@ -99,7 +124,6 @@ namespace NinjaTranslate
                 this.Visible = false;
             }
             if (this.WindowState == FormWindowState.Normal) {
-                this.notifyIcon1.Visible = false;
                 this.ShowInTaskbar = true;
             }
         }
@@ -217,6 +241,7 @@ namespace NinjaTranslate
 
         // Exit NinjaTranslate
         private void menuItem3_Click(object sender, EventArgs e) {
+            this.realClose = true;
             System.Windows.Forms.Application.Exit();
         }
 
@@ -248,7 +273,20 @@ namespace NinjaTranslate
                 return false;
             this.dictionaries.Add(key, path);
             this.comboBox_dict.SelectedIndex = this.comboBox_dict.Items.Add(key);
+
+            //first dict?
+            if (this.currentKeyConfig.Equals(""))
+                this.currentKeyConfig = key;
+
+            //load at start?
+            if (this.currentKeyConfig.Equals(key))
+                this.currentKey.Checked = true;
+
             return true;
+        }
+
+        private void MainWindow_Shown(object sender, EventArgs e) {
+            this.MinimizeForm();
         }
     }
 }

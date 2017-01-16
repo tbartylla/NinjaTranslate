@@ -15,7 +15,7 @@ namespace ntutil
             public Boolean isMulti = false;
         }
 
-        private static String filePath = "config.ini";
+        private static String filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "NinjaTranslate/config.ini");
         private static Dictionary<String, ConfigStore> confValues = new Dictionary<String, ConfigStore>();
         private static bool valuesLoaded = false;
 

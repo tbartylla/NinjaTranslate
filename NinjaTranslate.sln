@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NinjaTranslate", "NinjaTranslate\NinjaTranslate.csproj", "{2CF992B8-3A0F-47D0-BE71-01EC3E77CFA4}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -17,6 +17,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.csproj", "{D54CBFE5-2776-452C-80E7-BEC6E8693336}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ntutil", "ntutil\ntutil.csproj", "{01114AB5-5092-4E8C-B990-437B4F49C63F}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{0A364150-8B93-4E5D-96CB-8F82AD66CD31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +38,8 @@ Global
 		{01114AB5-5092-4E8C-B990-437B4F49C63F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01114AB5-5092-4E8C-B990-437B4F49C63F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01114AB5-5092-4E8C-B990-437B4F49C63F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A364150-8B93-4E5D-96CB-8F82AD66CD31}.Debug|Any CPU.ActiveCfg = Debug
+		{0A364150-8B93-4E5D-96CB-8F82AD66CD31}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

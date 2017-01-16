@@ -28,6 +28,8 @@ namespace NinjaTranslate {
         /// </summary>
         Normalizer filter;
 
+        string pathPrefix = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "NinjaTranslate");
+
         public void SetSplashForm(SplashForm form) {
             this.sF = form;
         }
@@ -44,6 +46,8 @@ namespace NinjaTranslate {
         /// <returns></returns>
         public PatriciaTrie LoadDictData(String fileToLoad, String serializedFile) {
             PatriciaTrie pTrie = new PatriciaTrie();
+            serializedFile = Path.Combine(this.pathPrefix, serializedFile);
+           
             //serialized file found, use this one
             if (File.Exists(serializedFile)) {
                 //reset status informations of FileMapper for next run

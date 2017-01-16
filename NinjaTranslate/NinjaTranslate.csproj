@@ -41,7 +41,9 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Presentation" />
     <Reference Include="System.Xaml" />
@@ -159,7 +161,7 @@
     <Content Include="Resources\delete.png" />
     <Content Include="Resources\delete_hover.png" />
     <Content Include="Resources\NT16px.ico" />
-    <Content Include="Resources\NTicon.ico" />
+    <Resource Include="Resources\NTicon.ico" />
     <None Include="Resources\splash_screen.png" />
   </ItemGroup>
   <ItemGroup>

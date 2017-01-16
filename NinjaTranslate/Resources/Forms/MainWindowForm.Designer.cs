@@ -83,7 +83,7 @@
             this.txtbox_search_shortkey.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtbox_search_shortkey.Enabled = false;
             this.txtbox_search_shortkey.Location = new System.Drawing.Point(277, 30);
-            this.txtbox_search_shortkey.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtbox_search_shortkey.Margin = new System.Windows.Forms.Padding(4);
             this.txtbox_search_shortkey.Name = "txtbox_search_shortkey";
             this.txtbox_search_shortkey.ReadOnly = true;
             this.txtbox_search_shortkey.Size = new System.Drawing.Size(171, 22);
@@ -108,6 +108,7 @@
             this.notifyIcon1.ContextMenu = this.contextMenu1;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "NinjaTranslate";
+            this.notifyIcon1.Visible = true;
             this.notifyIcon1.Click += new System.EventHandler(this.notifyIcon1_Click);
             // 
             // contextMenu1
@@ -131,7 +132,7 @@
             // btn_history
             // 
             this.btn_history.Location = new System.Drawing.Point(12, 526);
-            this.btn_history.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_history.Margin = new System.Windows.Forms.Padding(4);
             this.btn_history.Name = "btn_history";
             this.btn_history.Size = new System.Drawing.Size(107, 28);
             this.btn_history.TabIndex = 8;
@@ -155,9 +156,9 @@
             this.groupBox1.Controls.Add(this.numeric_clipboardAccess);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(13, 12);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(465, 143);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
@@ -167,7 +168,7 @@
             // 
             this.quickChangeInMemory.AutoSize = true;
             this.quickChangeInMemory.Location = new System.Drawing.Point(280, 53);
-            this.quickChangeInMemory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.quickChangeInMemory.Margin = new System.Windows.Forms.Padding(4);
             this.quickChangeInMemory.Name = "quickChangeInMemory";
             this.quickChangeInMemory.Size = new System.Drawing.Size(18, 17);
             this.quickChangeInMemory.TabIndex = 26;
@@ -218,7 +219,7 @@
             // numeric_window_width
             // 
             this.numeric_window_width.Location = new System.Drawing.Point(280, 110);
-            this.numeric_window_width.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numeric_window_width.Margin = new System.Windows.Forms.Padding(4);
             this.numeric_window_width.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -242,7 +243,7 @@
             // numeric_window_height
             // 
             this.numeric_window_height.Location = new System.Drawing.Point(280, 80);
-            this.numeric_window_height.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numeric_window_height.Margin = new System.Windows.Forms.Padding(4);
             this.numeric_window_height.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -302,7 +303,7 @@
             // numeric_clipboardAccess
             // 
             this.numeric_clipboardAccess.Location = new System.Drawing.Point(280, 23);
-            this.numeric_clipboardAccess.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numeric_clipboardAccess.Margin = new System.Windows.Forms.Padding(4);
             this.numeric_clipboardAccess.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -353,9 +354,9 @@
             this.groupBox2.Controls.Add(this.btn_browse_dict);
             this.groupBox2.Controls.Add(this.textBox_path_to_dict);
             this.groupBox2.Location = new System.Drawing.Point(13, 165);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(465, 181);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
@@ -365,7 +366,7 @@
             // 
             this.infoButton.AutoSize = true;
             this.infoButton.Location = new System.Drawing.Point(167, 137);
-            this.infoButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.infoButton.Margin = new System.Windows.Forms.Padding(4);
             this.infoButton.Name = "infoButton";
             this.infoButton.Size = new System.Drawing.Size(147, 33);
             this.infoButton.TabIndex = 29;
@@ -377,7 +378,7 @@
             // 
             this.keyTextBox.Enabled = false;
             this.keyTextBox.Location = new System.Drawing.Point(11, 62);
-            this.keyTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.keyTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.keyTextBox.Name = "keyTextBox";
             this.keyTextBox.ReadOnly = true;
             this.keyTextBox.Size = new System.Drawing.Size(65, 22);
@@ -388,7 +389,7 @@
             // 
             this.deleteButton.Enabled = false;
             this.deleteButton.Location = new System.Drawing.Point(263, 90);
-            this.deleteButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.deleteButton.Margin = new System.Windows.Forms.Padding(4);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(184, 27);
             this.deleteButton.TabIndex = 27;
@@ -401,7 +402,7 @@
             this.quickChangeKey.AutoSize = true;
             this.quickChangeKey.Enabled = false;
             this.quickChangeKey.Location = new System.Drawing.Point(141, 94);
-            this.quickChangeKey.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.quickChangeKey.Margin = new System.Windows.Forms.Padding(4);
             this.quickChangeKey.Name = "quickChangeKey";
             this.quickChangeKey.Size = new System.Drawing.Size(114, 21);
             this.quickChangeKey.TabIndex = 26;
@@ -414,7 +415,7 @@
             this.currentKey.AutoSize = true;
             this.currentKey.Enabled = false;
             this.currentKey.Location = new System.Drawing.Point(12, 94);
-            this.currentKey.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.currentKey.Margin = new System.Windows.Forms.Padding(4);
             this.currentKey.Name = "currentKey";
             this.currentKey.Size = new System.Drawing.Size(105, 21);
             this.currentKey.TabIndex = 25;
@@ -436,7 +437,7 @@
             // 
             this.btn_add_dict.AutoSize = true;
             this.btn_add_dict.Location = new System.Drawing.Point(12, 137);
-            this.btn_add_dict.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_add_dict.Margin = new System.Windows.Forms.Padding(4);
             this.btn_add_dict.Name = "btn_add_dict";
             this.btn_add_dict.Size = new System.Drawing.Size(147, 33);
             this.btn_add_dict.TabIndex = 23;
@@ -448,7 +449,7 @@
             // 
             this.comboBox_dict.FormattingEnabled = true;
             this.comboBox_dict.Location = new System.Drawing.Point(276, 27);
-            this.comboBox_dict.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_dict.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_dict.Name = "comboBox_dict";
             this.comboBox_dict.Size = new System.Drawing.Size(171, 24);
             this.comboBox_dict.TabIndex = 1;
@@ -459,7 +460,7 @@
             // 
             this.btn_browse_dict.Enabled = false;
             this.btn_browse_dict.Location = new System.Drawing.Point(352, 60);
-            this.btn_browse_dict.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_browse_dict.Margin = new System.Windows.Forms.Padding(4);
             this.btn_browse_dict.Name = "btn_browse_dict";
             this.btn_browse_dict.Size = new System.Drawing.Size(96, 27);
             this.btn_browse_dict.TabIndex = 19;
@@ -471,7 +472,7 @@
             // 
             this.textBox_path_to_dict.Enabled = false;
             this.textBox_path_to_dict.Location = new System.Drawing.Point(85, 62);
-            this.textBox_path_to_dict.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_path_to_dict.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_path_to_dict.Name = "textBox_path_to_dict";
             this.textBox_path_to_dict.ReadOnly = true;
             this.textBox_path_to_dict.Size = new System.Drawing.Size(256, 22);
@@ -486,9 +487,9 @@
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.txtbox_openinput_shortkey);
             this.groupBox3.Location = new System.Drawing.Point(13, 359);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(465, 155);
             this.groupBox3.TabIndex = 19;
             this.groupBox3.TabStop = false;
@@ -508,7 +509,7 @@
             // btn_restore_shortkeys
             // 
             this.btn_restore_shortkeys.Location = new System.Drawing.Point(9, 107);
-            this.btn_restore_shortkeys.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_restore_shortkeys.Margin = new System.Windows.Forms.Padding(4);
             this.btn_restore_shortkeys.Name = "btn_restore_shortkeys";
             this.btn_restore_shortkeys.Size = new System.Drawing.Size(137, 27);
             this.btn_restore_shortkeys.TabIndex = 24;
@@ -531,7 +532,7 @@
             this.txtbox_openinput_shortkey.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtbox_openinput_shortkey.Enabled = false;
             this.txtbox_openinput_shortkey.Location = new System.Drawing.Point(277, 62);
-            this.txtbox_openinput_shortkey.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtbox_openinput_shortkey.Margin = new System.Windows.Forms.Padding(4);
             this.txtbox_openinput_shortkey.Name = "txtbox_openinput_shortkey";
             this.txtbox_openinput_shortkey.ReadOnly = true;
             this.txtbox_openinput_shortkey.Size = new System.Drawing.Size(171, 22);
@@ -540,7 +541,7 @@
             // btn_save
             // 
             this.btn_save.Location = new System.Drawing.Point(372, 526);
-            this.btn_save.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_save.Margin = new System.Windows.Forms.Padding(4);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(107, 28);
             this.btn_save.TabIndex = 20;
@@ -551,7 +552,7 @@
             // btn_cancel
             // 
             this.btn_cancel.Location = new System.Drawing.Point(257, 526);
-            this.btn_cancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_cancel.Margin = new System.Windows.Forms.Padding(4);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(107, 28);
             this.btn_cancel.TabIndex = 21;
@@ -576,12 +577,14 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_history);
             this.Controls.Add(this.description);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "NinjaTranslate - Settings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Shown += new System.EventHandler(this.MainWindow_Shown);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
